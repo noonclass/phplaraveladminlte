@@ -279,6 +279,14 @@ Copied File [\vendor\acacha\admin-lte-template-laravel\routes\web.php] To [\rout
 
 Copied File [\vendor\acacha\admin-lte-template-laravel\routes\api.php] To [\routes\api.php]
 
+## Init DB
+Once package installed you have to follow the usual steps of any laravel project to Login to the admin interface:
+
+Create a database. I recommend the use of laravel homestead ()
+Create/check .env file and configure database acces (database name, password, etc)
+Run migrations with command $ php artisan migrate
+Register a first user and Login with it
+
 ## About PHPAdminLTE
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

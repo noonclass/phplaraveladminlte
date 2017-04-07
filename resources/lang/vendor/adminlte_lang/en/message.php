@@ -124,8 +124,8 @@ return [
     'yourtext'                => 'Your Text',
     'submit'                  => 'SUBMIT',
     'email'                   => 'Email',
-    'username'                => 'Username',
-    'password'                => 'Password',
+    'username'                => 'ÓÃ»§Ãû',
+    'password'                => 'ÃÜÂë',
     'retrypepassword'         => 'Retype password',
     'fullname'                => 'Full Name',
 ];

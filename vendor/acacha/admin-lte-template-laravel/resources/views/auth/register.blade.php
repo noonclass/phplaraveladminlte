@@ -29,7 +29,7 @@
                 <form action="{{ url('/register') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.fullname') }}" name="name" value="{{ old('name') }}" autofocus/>
+                        <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.username') }}" name="name" value="{{ old('name') }}" autofocus/>
                         <span class="glyphicon glyphicon-user form-control-feedback"></span>
                     </div>
                     @if (config('auth.providers.users.field','email') === 'username')

@@ -68,6 +68,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+            'field' => 'name' // Adminlte laravel. Valid values: 'email' or 'name'
         ],
 
         // 'users' => [
