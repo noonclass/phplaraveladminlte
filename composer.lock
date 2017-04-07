@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7a39c26062a310e027d6bb9d6dc4648",
+    "content-hash": "4bb7cc0223133b87216034985ae6c861",
     "packages": [
         {
             "name": "acacha/admin-lte-template-laravel",
@@ -2185,6 +2185,58 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2016-09-20T12:50:39+00:00"
+        },
+        {
+            "name": "ultraware/roles",
+            "version": "5.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ultraware/roles.git",
+                "reference": "00b14f8ffda80d795429be4757a8e16b2ef23576"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ultraware/roles/00b14f8ffda80d795429be4757a8e16b2ef23576.zip",
+                "reference": "00b14f8ffda80d795429be4757a8e16b2ef23576",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "5.4.*",
+                "php": ">=5.6.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.6",
+                "orchestra/database": "@dev",
+                "orchestra/testbench": "@dev",
+                "phpunit/phpunit": "^5.6",
+                "satooshi/php-coveralls": "1.0.*",
+                "sebastian/environment": "2.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Ultraware\\Roles\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ultraware"
+                }
+            ],
+            "description": "Powerful package for handling roles and permissions in Laravel 5.",
+            "keywords": [
+                "acl",
+                "auth",
+                "illuminate",
+                "laravel",
+                "permissions",
+                "roles"
+            ],
+            "time": "2017-01-25T07:53:11+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

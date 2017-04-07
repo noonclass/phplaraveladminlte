@@ -287,6 +287,49 @@ Create/check .env file and configure database acces (database name, password, et
 Run migrations with command $ php artisan migrate
 Register a first user and Login with it
 
+## Install Roles
+C:\xampp\htdocs\phpadminlte>composer require ultraware/roles
+Using version ^5.4 for ultraware/roles
+./composer.json has been updated
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Installing ultraware/roles (5.4.0): Downloading (100%)
+Writing lock file
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postUpdate
+> php artisan optimize
+Generating optimized class loader
+The compiled services file has been removed.
+
+Add the package to your application service providers in config/app.php file.
+Ultraware\Roles\RolesServiceProvider::class,
+
+C:\xampp\htdocs\phpadminlte>php artisan vendor:publish --provider="Ultraware\Roles\RolesServiceProvider" --tag=config
+Copied File [\vendor\ultraware\roles\config\roles.php] To [\config\roles.php]
+Publishing complete.
+
+C:\xampp\htdocs\phpadminlte>php artisan vendor:publish --provider="Ultraware\Roles\RolesServiceProvider" --tag=migrations
+Copied Directory [\vendor\ultraware\roles\migrations] To [\database\migrations]
+Publishing complete.
+
+C:\xampp\htdocs\phpadminlte>php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2015_01_15_105324_create_roles_table
+Migrated:  2015_01_15_105324_create_roles_table
+Migrating: 2015_01_15_114412_create_role_user_table
+Migrated:  2015_01_15_114412_create_role_user_table
+Migrating: 2015_01_26_115212_create_permissions_table
+Migrated:  2015_01_26_115212_create_permissions_table
+Migrating: 2015_01_26_115523_create_permission_role_table
+Migrated:  2015_01_26_115523_create_permission_role_table
+Migrating: 2015_02_09_132439_create_permission_user_table
+Migrated:  2015_02_09_132439_create_permission_user_table
+
 ## About PHPAdminLTE
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 

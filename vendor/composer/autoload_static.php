@@ -31,6 +31,10 @@ class ComposerStaticInit61d241a3ec10db8185dded17e731edbe
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'U' => 
+        array (
+            'Ultraware\\Roles\\' => 16,
+        ),
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
@@ -117,6 +121,10 @@ class ComposerStaticInit61d241a3ec10db8185dded17e731edbe
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Ultraware\\Roles\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ultraware/roles/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -358,6 +366,7 @@ class ComposerStaticInit61d241a3ec10db8185dded17e731edbe
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
@@ -3263,6 +3272,8 @@ class ComposerStaticInit61d241a3ec10db8185dded17e731edbe
         'Symfony\\Component\\Yaml\\Unescaper' => __DIR__ . '/..' . '/symfony/yaml/Unescaper.php',
         'Symfony\\Component\\Yaml\\Yaml' => __DIR__ . '/..' . '/symfony/yaml/Yaml.php',
         'Symfony\\Polyfill\\Mbstring\\Mbstring' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/Mbstring.php',
+        'Tests\\AcachaAdminLTELaravelTest' => __DIR__ . '/../..' . '/tests/AcachaAdminLTELaravelTest.php',
+        'Tests\\BrowserKitTest' => __DIR__ . '/../..' . '/tests/BrowserKitTest.php',
         'Tests\\CreatesApplication' => __DIR__ . '/../..' . '/tests/CreatesApplication.php',
         'Tests\\Feature\\ExampleTest' => __DIR__ . '/../..' . '/tests/Feature/ExampleTest.php',
         'Tests\\TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
@@ -3274,6 +3285,23 @@ class ComposerStaticInit61d241a3ec10db8185dded17e731edbe
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Ultraware\\Roles\\Contracts\\HasRoleAndPermission' => __DIR__ . '/..' . '/ultraware/roles/src/Contracts/HasRoleAndPermission.php',
+        'Ultraware\\Roles\\Contracts\\PermissionHasRelations' => __DIR__ . '/..' . '/ultraware/roles/src/Contracts/PermissionHasRelations.php',
+        'Ultraware\\Roles\\Contracts\\RoleHasRelations' => __DIR__ . '/..' . '/ultraware/roles/src/Contracts/RoleHasRelations.php',
+        'Ultraware\\Roles\\Exceptions\\AccessDeniedException' => __DIR__ . '/..' . '/ultraware/roles/src/Exceptions/AccessDeniedException.php',
+        'Ultraware\\Roles\\Exceptions\\LevelDeniedException' => __DIR__ . '/..' . '/ultraware/roles/src/Exceptions/LevelDeniedException.php',
+        'Ultraware\\Roles\\Exceptions\\PermissionDeniedException' => __DIR__ . '/..' . '/ultraware/roles/src/Exceptions/PermissionDeniedException.php',
+        'Ultraware\\Roles\\Exceptions\\RoleDeniedException' => __DIR__ . '/..' . '/ultraware/roles/src/Exceptions/RoleDeniedException.php',
+        'Ultraware\\Roles\\Middleware\\VerifyLevel' => __DIR__ . '/..' . '/ultraware/roles/src/Middleware/VerifyLevel.php',
+        'Ultraware\\Roles\\Middleware\\VerifyPermission' => __DIR__ . '/..' . '/ultraware/roles/src/Middleware/VerifyPermission.php',
+        'Ultraware\\Roles\\Middleware\\VerifyRole' => __DIR__ . '/..' . '/ultraware/roles/src/Middleware/VerifyRole.php',
+        'Ultraware\\Roles\\Models\\Permission' => __DIR__ . '/..' . '/ultraware/roles/src/Models/Permission.php',
+        'Ultraware\\Roles\\Models\\Role' => __DIR__ . '/..' . '/ultraware/roles/src/Models/Role.php',
+        'Ultraware\\Roles\\RolesServiceProvider' => __DIR__ . '/..' . '/ultraware/roles/src/RolesServiceProvider.php',
+        'Ultraware\\Roles\\Traits\\HasRoleAndPermission' => __DIR__ . '/..' . '/ultraware/roles/src/Traits/HasRoleAndPermission.php',
+        'Ultraware\\Roles\\Traits\\PermissionHasRelations' => __DIR__ . '/..' . '/ultraware/roles/src/Traits/PermissionHasRelations.php',
+        'Ultraware\\Roles\\Traits\\RoleHasRelations' => __DIR__ . '/..' . '/ultraware/roles/src/Traits/RoleHasRelations.php',
+        'Ultraware\\Roles\\Traits\\Slugable' => __DIR__ . '/..' . '/ultraware/roles/src/Traits/Slugable.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'XdgBaseDir\\Xdg' => __DIR__ . '/..' . '/dnoegel/php-xdg-base-dir/src/Xdg.php',
         'phpDocumentor\\Reflection\\DocBlock' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/DocBlock.php',

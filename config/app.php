@@ -160,6 +160,11 @@ return [
          * Acacha AdminLTE template provider
          */
         Acacha\AdminLTETemplateLaravel\Providers\AdminLTETemplateServiceProvider::class,
+        
+        /**
+         *  Roles and Permissions Service provider
+         */
+        Ultraware\Roles\RolesServiceProvider::class,
     ],
 
     /*
