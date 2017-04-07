@@ -136,6 +136,149 @@ The compiled services file has been removed.
 Application key [base64:H9ToVbn4D1/0WMrxbh/Qo6wE25U0jA1LegLZ+hSl5rM=] set successfully.
 Application ready! Build something amazing.
 
+## Install adminlte-laravel
+C:\xampp\htdocs>cd phpadminlte
+
+C:\xampp\htdocs\phpadminlte>adminlte-laravel --no-llum install
+Running composer require acacha/admin-lte-template-laravel
+Using version ^4.1 for acacha/admin-lte-template-laravel
+./composer.json has been updated
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 7 installs, 0 updates, 0 removals
+  - Installing symfony/dom-crawler (v3.2.7): Loading from cache
+  - Installing laravel/browser-kit-testing (v1.0.3): Loading from cache
+  - Installing creativeorange/gravatar (1.0.10): Loading from cache
+  - Installing acacha/user (0.2.2): Loading from cache
+  - Installing acacha/helpers (0.1.3): Loading from cache
+  - Installing acacha/filesystem (0.1.1): Loading from cache
+  - Installing acacha/admin-lte-template-laravel (4.1.9): Loading from cache
+Writing lock file
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postUpdate
+> php artisan optimize
+Generating optimized class loader
+The compiled services file has been removed.
+Copying file C:\xampp\php\composer\vendor\acacha\adminlte-laravel-installer\src\Console/stubs/app.php into C:\xampp\htdo
+cs\phpadminlte/config/app.php
+php artisan adminlte:publish
+
+
+  [Symfony\Component\Console\Exception\CommandNotFoundException]
+  There are no commands defined in the "adminlte-laravel" namespace.
+
+
+C:\xampp\htdocs\phpadminlte>adminlte-laravel --no-llum install
+Running composer require acacha/admin-lte-template-laravel
+Using version ^4.1 for acacha/admin-lte-template-laravel
+./composer.json has been updated
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Nothing to install or update
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postUpdate
+> php artisan optimize
+Generating optimized class loader
+The compiled services file has been removed.
+Copying file C:\xampp\php\composer\vendor\acacha\adminlte-laravel-installer\src\Console/stubs/app.php into C:\xampp\htdo
+cs\phpadminlte/config/app.php
+php artisan adminlte:publish
+Copied File [\vendor\acacha\admin-lte-template-laravel\src\stubs\HomeController.stub] To [\app\Http\Controllers\HomeCont
+roller.php]
+
+ RegisterController.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\src\stubs\RegisterController.stub] To [\app\Http\Controllers\Auth
+\RegisterController.php]
+
+ LoginController.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\src\stubs\LoginController.stub] To [\app\Http\Controllers\Auth\Lo
+ginController.php]
+
+ ForgotPasswordController.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\src\stubs\ForgotPasswordController.stub] To [\app\Http\Controller
+s\Auth\ForgotPasswordController.php]
+
+ ResetPasswordController.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\src\stubs\ResetPasswordController.stub] To [\app\Http\Controllers
+\Auth\ResetPasswordController.php]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\public\img] To [\public\img]
+
+ css already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\public\css] To [\public\css]
+
+ js already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\public\js] To [\public\js]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\public\plugins] To [\public\plugins]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\public\fonts] To [\public\fonts]
+Copied File [\vendor\acacha\admin-lte-template-laravel\public\mix-manifest.json] To [\public\mix-manifest.json]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\views\errors] To [\resources\views\errors]
+
+ welcome.blade.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\resources\views\welcome.blade.php] To [\resources\views\welcome.b
+lade.php]
+Copied File [\vendor\acacha\admin-lte-template-laravel\resources\views\layouts\partials\sidebar.blade.php] To [\resource
+s\views\vendor\adminlte\layouts\partials\sidebar.blade.php]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\assets\css] To [\resources\assets\css]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\assets\img] To [\resources\assets\img]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\assets\less] To [\resources\assets\less]
+
+ sass already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\assets\sass] To [\resources\assets\sass]
+
+ js already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\assets\js] To [\resources\assets\js]
+
+ webpack.mix.js already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\webpack.mix.js] To [\webpack.mix.js]
+
+ package.json already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\package.json] To [\package.json]
+
+ tests already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\tests] To [\tests]
+
+ phpunit.xml already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\phpunit.xml] To [\phpunit.xml]
+Copied Directory [\vendor\acacha\admin-lte-template-laravel\resources\lang] To [\resources\lang\vendor\adminlte_lang]
+Copied File [\vendor\creativeorange\gravatar\config\gravatar.php] To [\config\gravatar.php]
+Copied File [\vendor\acacha\admin-lte-template-laravel\config\adminlte.php] To [\config\adminlte.php]
+
+ web.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\routes\web.php] To [\routes\web.php]
+
+ api.php already exists. Do you want to overwrite it? [y|N] (yes/no) [no]:
+ > y
+
+Copied File [\vendor\acacha\admin-lte-template-laravel\routes\api.php] To [\routes\api.php]
+
 ## About PHPAdminLTE
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
