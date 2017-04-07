@@ -34,7 +34,7 @@
                     ></login-input-field>
             -->
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="{{ trans('adminlte_lang::message.email') }}" name="email"/>
+                <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.username') }}" name="name"/>
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">

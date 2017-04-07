@@ -123,9 +123,9 @@ return [
     'enteremail'              => 'Enter Email',
     'yourtext'                => 'Your Text',
     'submit'                  => 'SUBMIT',
-    'email'                   => 'Email',
-    'username'                => 'ÓÃ»§Ãû',
-    'password'                => 'ÃÜÂë',
-    'retrypepassword'         => 'Retype password',
+    'email'                   => 'é‚®ç®±',
+    'username'                => 'ç”¨æˆ·å',
+    'password'                => 'å¯†ç ',
+    'retrypepassword'         => 'é‡æ–°è¾“å…¥å¯†ç ',
     'fullname'                => 'Full Name',
 ];
