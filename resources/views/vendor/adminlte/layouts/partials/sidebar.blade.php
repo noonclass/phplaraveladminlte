@@ -33,22 +33,40 @@
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class=""><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <li {{ (Route::is('') ? 'class=active' : '') }}><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li class="treeview {{ (in_array(Route::currentRouteName(), array('blacklist','whitelist','welcoming','outside','schedhangup','transfer','holdmusic','2mobile','onedial'))?'active':'') }}">
+                <a href="#"><i class='fa fa-wrench'></i> <span>{{ trans('adminlte_lang::message.config') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
-                    <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+                    <li {{ (Route::is('blacklist') ? 'class="active"' : '') }}><a href="{{ url('config/blacklist') }}">{{ trans('adminlte_lang::message.blacklist') }}</a></li>
+                    <li {{ (Route::is('whitelist') ? 'class="active"' : '') }}><a href="{{ url('config/whitelist') }}">{{ trans('adminlte_lang::message.whitelist') }}</a></li>
+                    <li {{ (Route::is('welcoming') ? 'class="active"' : '') }}><a href="{{ url('config/welcoming') }}">{{ trans('adminlte_lang::message.welcoming') }}</a></li>
+                    <li {{ (Route::is('outside') ? 'class="active"' : '') }}><a href="{{ url('config/outside') }}">{{ trans('adminlte_lang::message.outside') }}</a></li>
+                    <li {{ (Route::is('schedhangup') ? 'class="active"' : '') }}><a href="{{ url('config/schedhangup') }}">{{ trans('adminlte_lang::message.schedhangup') }}</a></li>
+                    <li {{ (Route::is('transfer') ? 'class="active"' : '') }}><a href="{{ url('config/transfer') }}">{{ trans('adminlte_lang::message.transfer') }}</a></li>
+                    <li {{ (Route::is('holdmusic') ? 'class="active"' : '') }}><a href="{{ url('config/holdmusic') }}">{{ trans('adminlte_lang::message.holdmusic') }}</a></li>
+                    <li {{ (Route::is('2mobile') ? 'class="active"' : '') }}><a href="{{ url('config/2mobile') }}">{{ trans('adminlte_lang::message.2mobile') }}</a></li>
+                    <li {{ (Route::is('onedial') ? 'class="active"' : '') }}><a href="{{ url('config/onedial') }}">{{ trans('adminlte_lang::message.onedial') }}</a></li>
                 </ul>
             </li>
-            <li class="treeview {{ (in_array(Route::currentRouteName(), array('tenants','extensions','users','permissions'))?'active':'') }}">
-                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.accounts') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-bar-chart'></i> <span>{{ trans('adminlte_lang::message.stat') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-tty'></i> <span>{{ trans('adminlte_lang::message.monitor') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-cogs'></i> <span>{{ trans('adminlte_lang::message.manage') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            </li>
+            <li class="treeview">
+                <a href="#"><i class='fa fa-terminal'></i> <span>{{ trans('adminlte_lang::message.tool') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+            </li>
+            <li class="treeview {{ (in_array(Route::currentRouteName(), array('tenant','extension','user','permission'))?'active':'') }}">
+                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.account') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li {{ (Route::is('tenants') ? 'class="active"' : '') }}><a href="{{ url('accounts/tenants') }}">{{ trans('adminlte_lang::message.tenants') }}</a></li>
-                    <li {{ (Route::is('extensions') ? 'class="active"' : '') }}><a href="{{ url('accounts/extensions') }}">{{ trans('adminlte_lang::message.extensions') }}</a></li>
-                    <li {{ (Route::is('users') ? 'class="active"' : '') }}><a href="{{ url('accounts/users') }}">{{ trans('adminlte_lang::message.users') }}</a></li>
-                    <li {{ (Route::is('permissions') ? 'class="active"' : '') }}><a href="{{ url('accounts/permissions') }}">{{ trans('adminlte_lang::message.permissions') }}</a></li>
+                    <li {{ (Route::is('tenant') ? 'class="active"' : '') }}><a href="{{ url('account/tenant') }}">{{ trans('adminlte_lang::message.tenant') }}</a></li>
+                    <li {{ (Route::is('extension') ? 'class="active"' : '') }}><a href="{{ url('account/extension') }}">{{ trans('adminlte_lang::message.extension') }}</a></li>
+                    <li {{ (Route::is('user') ? 'class="active"' : '') }}><a href="{{ url('account/user') }}">{{ trans('adminlte_lang::message.user') }}</a></li>
+                    <li {{ (Route::is('permission') ? 'class="active"' : '') }}><a href="{{ url('account/permission') }}">{{ trans('adminlte_lang::message.permission') }}</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
