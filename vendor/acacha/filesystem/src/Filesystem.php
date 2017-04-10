@@ -119,6 +119,10 @@ class Filesystem
      */
     protected function getPath($file)
     {
+        // patch for windows platform
+        if(DIRECTORY_SEPARATOR == '\\'){
+            return $file;
+        }
         return $this->root . '/' . $file;
     }
 

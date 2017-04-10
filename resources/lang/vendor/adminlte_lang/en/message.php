@@ -128,4 +128,9 @@ return [
     'password'                => '密码',
     'retrypepassword'         => '重新输入密码',
     'fullname'                => 'Full Name',
+    'accounts'                => '账号配置',
+    'tenants'                 => '租户管理',
+    'extensions'              => '分机管理',
+    'users'                   => '用户管理',
+    'permissions'             => '权限管理',
 ];

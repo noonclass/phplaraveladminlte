@@ -23,3 +23,23 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
 });
+
+Route::group(['before' => 'auth', 'prefix' => 'accounts'], function()
+{
+    Route::get('tenants', function ()    {
+        $data = ['as'=>'tenants'];
+        return view('tenants',$data);
+    })->name('tenants');
+    Route::get('extensions', function ()    {
+        $data = [];
+        return view('extensions',$data);
+    })->name('extensions');
+    Route::get('users', function ()    {
+        $data = [];
+        return view('users',$data);
+    })->name('users');
+    Route::get('permissions', function ()    {
+        $data = [];
+        return view('permissions',$data);
+    })->name('permissions');
+});

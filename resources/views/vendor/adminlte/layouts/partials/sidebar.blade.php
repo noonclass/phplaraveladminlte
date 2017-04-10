@@ -33,13 +33,22 @@
         <ul class="sidebar-menu">
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
+            <li class=""><a href="{{ url('home') }}"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
             <li><a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.anotherlink') }}</span></a></li>
             <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>{{ trans('adminlte_lang::message.multilevel') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
                     <li><a href="#">{{ trans('adminlte_lang::message.linklevel2') }}</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ (in_array(Route::currentRouteName(), array('tenants','extensions','users','permissions'))?'active':'') }}">
+                <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.accounts') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li {{ (Route::is('tenants') ? 'class="active"' : '') }}><a href="{{ url('accounts/tenants') }}">{{ trans('adminlte_lang::message.tenants') }}</a></li>
+                    <li {{ (Route::is('extensions') ? 'class="active"' : '') }}><a href="{{ url('accounts/extensions') }}">{{ trans('adminlte_lang::message.extensions') }}</a></li>
+                    <li {{ (Route::is('users') ? 'class="active"' : '') }}><a href="{{ url('accounts/users') }}">{{ trans('adminlte_lang::message.users') }}</a></li>
+                    <li {{ (Route::is('permissions') ? 'class="active"' : '') }}><a href="{{ url('accounts/permissions') }}">{{ trans('adminlte_lang::message.permissions') }}</a></li>
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->
