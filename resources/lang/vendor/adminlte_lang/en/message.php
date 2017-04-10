@@ -52,6 +52,7 @@ return [
     'createdby'               => 'Created by',
     'seecode'                 => 'See code at',
     'online'                  => 'Online',
+    'index'                   => '首页',
     'home'                    => '仪表盘',
     'header'                  => 'HEADER',
     'anotherlink'             => 'Another Link',
