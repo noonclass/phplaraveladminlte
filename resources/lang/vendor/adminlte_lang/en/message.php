@@ -148,4 +148,9 @@ return [
     'monitor'             => '业务监控',
     'manage'              => '设备管理',
     'tool'                => '系统工具',
+    'operationpanel'          => '操作面板',
+    'add'                     => '新建',
+    'export'                  => '导出',
+    'import'                  => '导入',
+    'cfg'                     => '配置',
 ];
