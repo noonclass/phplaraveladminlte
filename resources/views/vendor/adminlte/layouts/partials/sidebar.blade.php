@@ -34,7 +34,7 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li {{ (Route::is('') ? 'class=active' : '') }}><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li class="treeview {{ (in_array(Route::currentRouteName(), array('blacklist','whitelist','welcoming','outside','schedhangup','transfer','holdmusic','2mobile','onedial'))?'active':'') }}">
+            <li class="treeview{{ (in_array(Route::currentRouteName(), array('blacklist','whitelist','welcoming','outside','schedhangup','transfer','holdmusic','2mobile','onedial'))?' active':'') }}">
                 <a href="#"><i class='fa fa-wrench'></i> <span>{{ trans('adminlte_lang::message.config') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li {{ (Route::is('blacklist') ? 'class="active"' : '') }}><a href="{{ url('config/blacklist') }}">{{ trans('adminlte_lang::message.blacklist') }}</a></li>
@@ -60,7 +60,7 @@
             <li class="treeview">
                 <a href="#"><i class='fa fa-terminal'></i> <span>{{ trans('adminlte_lang::message.tool') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
             </li>
-            <li class="treeview {{ (in_array(Route::currentRouteName(), array('tenant','extension','user','permission'))?'active':'') }}">
+            <li class="treeview{{ (in_array(Route::currentRouteName(), array('tenant','extension','user','permission'))?' active':'') }}">
                 <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.account') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li {{ (Route::is('tenant') ? 'class="active"' : '') }}><a href="{{ url('account/tenant') }}">{{ trans('adminlte_lang::message.tenant') }}</a></li>

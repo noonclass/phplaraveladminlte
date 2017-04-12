@@ -28,9 +28,9 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <a class="btn btn-app"><i class="glyphicon glyphicon-plus"></i>{{ trans('adminlte_lang::message.add') }}</a>
-                        <a class="btn btn-app"><span class="badge bg-green">891</span><i class="glyphicon glyphicon-export"></i>{{ trans('adminlte_lang::message.export') }}</a>
-                        <a class="btn btn-app"><span class="badge bg-purple">891</span><i class="glyphicon glyphicon-import"></i>{{ trans('adminlte_lang::message.import') }}</a>
-                        <a class="btn btn-app"><i class="glyphicon glyphicon-cog"></i>{{ trans('adminlte_lang::message.cfg') }}</a>
+                        <a class="btn btn-app"><span class="badge bg-green">N</span><i class="glyphicon glyphicon-export"></i>{{ trans('adminlte_lang::message.export') }}</a>
+                        <a class="btn btn-app"><span class="badge bg-purple">N</span><i class="glyphicon glyphicon-import"></i>{{ trans('adminlte_lang::message.import') }}</a>
+                        <a class="btn btn-app"><span class="badge bg-red">N</span><i class="glyphicon glyphicon-cog"></i>{{ trans('adminlte_lang::message.cfg') }}</a>
                     </div>
                     <!-- /.box-body -->
                 </div>
@@ -39,9 +39,6 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="box box-primary">
-                    <div class="box-header">
-                      <h3 class="box-title">Data Table With Full Features</h3>
-                    </div>
                     <!-- /.box-header -->
                     <div class="box-body">
                       <table id="example1" class="table table-bordered table-striped table-hover">
