@@ -41,7 +41,7 @@
 				<div class="box box-primary">
                     <!-- /.box-header -->
                     <div class="box-body">
-                      <table id="example1" class="table table-bordered table-striped table-hover">
+                      <table id="datatable" class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
                           <th>Rendering engine</th>
@@ -85,4 +85,10 @@
             </div>
 		</div>
 	</div>
+@endsection
+
+@section('main-script')
+<script type="text/javascript">
+    
+</script>
 @endsection

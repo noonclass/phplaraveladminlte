@@ -24,12 +24,18 @@ Route::group(['middleware' => 'auth'], function () {
     #adminlte_routes
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'account'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
 {
     Route::get('tenant', function ()    {
         $data = ['as'=>'tenant'];
         return view('tenant',$data);
     })->name('tenant');
+    Route::get( 'tenant',   ['as'=>'tenant','uses'=>'TenantController@index']);
+    Route::post('tenant/c', 'TenantController@create');
+    Route::post('tenant/r', 'TenantController@read');
+    Route::post('tenant/u', 'TenantController@update');
+    Route::post('tenant/d', 'TenantController@delete');
+    
     Route::get('extension', function ()    {
         $data = ['as'=>'extension'];
         return view('extension',$data);
@@ -44,7 +50,7 @@ Route::group(['before' => 'auth', 'prefix' => 'account'], function()
     })->name('permission');
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'config'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'config'], function()
 {
     Route::get('blacklist', function ()    {
         $data = ['as'=>'blacklist'];
@@ -84,18 +90,18 @@ Route::group(['before' => 'auth', 'prefix' => 'config'], function()
     })->name('onedial');
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'stat'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'stat'], function()
 {
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'monitor'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'monitor'], function()
 {
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'manage'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'manage'], function()
 {
 });
 
-Route::group(['before' => 'auth', 'prefix' => 'tool'], function()
+Route::group(['middleware' => 'auth', 'prefix' => 'tool'], function()
 {
 });

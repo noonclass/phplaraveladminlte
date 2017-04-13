@@ -273,3 +273,7 @@
 		</div>
 	</div>
 @endsection
+
+@section('main-script')
+    <!-- Your Script Here -->
+@endsection

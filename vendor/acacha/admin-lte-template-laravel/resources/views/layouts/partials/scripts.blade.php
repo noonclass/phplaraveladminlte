@@ -7,18 +7,14 @@
 <!-- DataPicker -->
 <script src="{{ url ('/plugins/bootstrap-datepicker.js') }}" type="text/javascript"></script>
 <!-- DataTables -->
-<script src="{{ url ('/plugins/jquery.dataTables.min.js') }}"></script>
-<script src="{{ url ('/plugins/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ url ('/plugins/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/plugins/dataTables.bootstrap.min.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience. Slimscroll is required when using the
       fixed layout. -->
-<script>
-    window.Laravel = {!! json_encode([
-        'csrfToken' => csrf_token(),
-    ]) !!};
-    
+<script type="text/javascript">
     $(function () {
         "use strict";
         
@@ -26,6 +22,6 @@
         $("#calendar").datepicker();
         
         //The Tables
-        $("#example1").DataTable();
+        $("#datatable").DataTable();
     });
 </script>
