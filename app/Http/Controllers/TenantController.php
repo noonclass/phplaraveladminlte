@@ -22,22 +22,22 @@ class TenantController extends Controller
     public function create(Request $request)
     {
         $data = new Tenant;
-        $data->name                  = $request->name;
-        $data->desc	                 = $request->desc;	
-        $data->access_number         = $request->access_number;
-        $data->extrinsic_number      = $request->extrinsic_number;
-        $data->gateway               = $request->gateway;
-        $data->prefix                = $request->prefix;
-        $data->holiday               = $request->holiday;
-        $data->work_day              = $request->work_day;
-        $data->work_hour             = $request->work_hour;
-        $data->work_welcome_file     = $request->work_welcome_file;
-        $data->non_work_welcome_file = $request->non_work_welcome_file;
-        $data->call_rate             = $request->call_rate;
-        $data->call_package          = $request->call_package;
-        $data->call_package_amount   = $request->call_package_amount;
-        $data->call_package_minutes  = $request->call_package_minutes;
-        $data->status                = $request->status;
+        $data->name                 = $request->name;
+        $data->desc	                = $request->desc;	
+        $data->access_number        = $request->access_number;
+        $data->extrinsic_number     = $request->extrinsic_number;
+        $data->gateway              = $request->gateway;
+        $data->prefix               = $request->prefix;
+        $data->welcome_file         = $request->welcome_file;
+        $data->nonwork_file         = $request->nonwork_file;
+        $data->moh_file             = $request->moh_file;
+        $data->blacklist_on         = $request->blacklist_on;
+        $data->whitelist_on         = $request->whitelist_on;
+        $data->call_rate            = $request->call_rate;
+        $data->call_package         = $request->call_package;
+        $data->call_package_amount  = $request->call_package_amount;
+        $data->call_package_minutes = $request->call_package_minutes;
+        $data->status               = $request->status;
         $data->save();
         //redirect to back page
         //return back()->with('success','Record Added successfully.');
@@ -64,22 +64,22 @@ class TenantController extends Controller
     {
         $id = $request->id;
         $data = Tenant::find($id);
-        $data->name                  = $request->name;
-        $data->desc	                 = $request->desc;	
-        $data->access_number         = $request->access_number;
-        $data->extrinsic_number      = $request->extrinsic_number;
-        $data->gateway               = $request->gateway;
-        $data->prefix                = $request->prefix;
-        $data->holiday               = $request->holiday;
-        $data->work_day              = $request->work_day;
-        $data->work_hour             = $request->work_hour;
-        $data->work_welcome_file     = $request->work_welcome_file;
-        $data->non_work_welcome_file = $request->non_work_welcome_file;
-        $data->call_rate             = $request->call_rate;
-        $data->call_package          = $request->call_package;
-        $data->call_package_amount   = $request->call_package_amount;
-        $data->call_package_minutes  = $request->call_package_minutes;
-        $data->status                = $request->status;
+        $data->name                 = $request->name;
+        $data->desc	                = $request->desc;	
+        $data->access_number        = $request->access_number;
+        $data->extrinsic_number     = $request->extrinsic_number;
+        $data->gateway              = $request->gateway;
+        $data->prefix               = $request->prefix;
+        $data->welcome_file         = $request->welcome_file;
+        $data->nonwork_file         = $request->nonwork_file;
+        $data->moh_file             = $request->moh_file;
+        $data->blacklist_on         = $request->blacklist_on;
+        $data->whitelist_on         = $request->whitelist_on;
+        $data->call_rate            = $request->call_rate;
+        $data->call_package         = $request->call_package;
+        $data->call_package_amount  = $request->call_package_amount;
+        $data->call_package_minutes = $request->call_package_minutes;
+        $data->status               = $request->status;
         $data->save();
         //redirect to back page
         //return back()->with('success','Record Updated successfully.');
