@@ -26,24 +26,34 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
 {
-    Route::get('tenant', function ()    {
-        $data = ['as'=>'tenant'];
-        return view('tenant',$data);
-    })->name('tenant');
+    // Tenant Web Routes
     Route::get( 'tenant',   ['as'=>'tenant','uses'=>'TenantController@index']);
     Route::post('tenant/c', 'TenantController@create');
     Route::post('tenant/r', 'TenantController@read');
     Route::post('tenant/u', 'TenantController@update');
     Route::post('tenant/d', 'TenantController@delete');
     
-    Route::get('extension', function ()    {
-        $data = ['as'=>'extension'];
-        return view('extension',$data);
-    })->name('extension');
-    Route::get('user', function ()    {
-        $data = ['as'=>'user'];
-        return view('user',$data);
-    })->name('user');
+    // Extension Web Routes
+    Route::get( 'extension',   ['as'=>'extension','uses'=>'ExtensionController@index']);
+    Route::post('extension/c', 'ExtensionController@create');
+    Route::post('extension/r', 'ExtensionController@read');
+    Route::post('extension/u', 'ExtensionController@update');
+    Route::post('extension/d', 'ExtensionController@delete');
+    
+    // User Web Routes
+    Route::get( 'user',   ['as'=>'user','uses'=>'UserController@index']);
+    Route::post('user/c', 'UserController@create');
+    Route::post('user/r', 'UserController@read');
+    Route::post('user/u', 'UserController@update');
+    Route::post('user/d', 'UserController@delete');
+    
+    // Role Web Routes
+    Route::get( 'role',   ['as'=>'role','uses'=>'RoleController@index']);
+    Route::post('role/c', 'RoleController@create');
+    Route::post('role/r', 'RoleController@read');
+    Route::post('role/u', 'RoleController@update');
+    Route::post('role/d', 'RoleController@delete');
+    
     Route::get('permission', function ()    {
         $data = ['as'=>'permission'];
         return view('permission',$data);

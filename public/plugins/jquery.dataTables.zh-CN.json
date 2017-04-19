@@ -1,0 +1,27 @@
+{
+	"sEmptyTable":   	"没有数据",
+	"sInfo":         	"第 _PAGE_ 页 / 总 _PAGES_ 页",
+	"sInfoEmpty":    	"没有数据",
+	"sInfoFiltered": 	"(过滤总件数 _MAX_ 条)",
+	"sInfoPostFix":  	"",
+	"sInfoThousands":  	".",
+	"sLengthMenu":   	"每页 _MENU_ 件",
+	"sLoadingRecords": 	"加载中...",
+	"sProcessing":   	"查询中...",
+	"sSearch":       	"检索",
+	"sZeroRecords":  	"没有数据",
+	"oPaginate": {
+		"sFirst":    	"第一页",
+		"sPrevious": 	"上一页",
+		"sNext":     	"下一页",
+		"sLast":     	"最后一页"
+	},
+	"oAria": {
+		"sSortAscending":  "升序排列",
+		"sSortDescending": "降序排列"
+	},
+    "buttons": {
+        "pageLength":  "%d <i class='fa fa-caret-down'></i>",
+        "colvis":       "<i class='fa fa-th'></i> <i class='fa fa-caret-down'></i>"
+    }
+}

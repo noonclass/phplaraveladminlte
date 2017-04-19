@@ -1,20 +1,20 @@
 @extends('adminlte::page')
 
 @section('htmlheader_title')
-	{{ trans('adminlte_lang::message.user') }}
+	{{ trans('adminlte_lang::message.role') }}
 @endsection
 
 @section('contentheader_title')
-    {{ trans('adminlte_lang::message.user') }}
+    {{ trans('adminlte_lang::message.role') }}
 @endsection
 
 @section('contentheader_description')
-    User Config
+    Role Config
 @endsection
 
 @section('main-content')
 	<div class="container-fluid spark-screen">
-        <div class="row">
+		<div class="row">
 			<div class="col-md-12">
 				<div class="box box-success">
                     <div class="box-header with-border">
@@ -27,7 +27,7 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
-                        <a class="btn btn-app" data-toggle="modal" data-target="#add-modal" onclick="readTenants()"><i class="glyphicon glyphicon-plus"></i>{{ trans('adminlte_lang::message.add') }}</a>
+                        <a class="btn btn-app" data-toggle="modal" data-target="#add-modal"><i class="glyphicon glyphicon-plus"></i>{{ trans('adminlte_lang::message.add') }}</a>
                         <a class="btn btn-app"><span class="badge bg-green">N</span><i class="glyphicon glyphicon-export"></i>{{ trans('adminlte_lang::message.export') }}</a>
                         <a class="btn btn-app"><span class="badge bg-purple">N</span><i class="glyphicon glyphicon-import"></i>{{ trans('adminlte_lang::message.import') }}</a>
                         <a class="btn btn-app"><span class="badge bg-red">N</span><i class="glyphicon glyphicon-cog"></i>{{ trans('adminlte_lang::message.cfg') }}</a>
@@ -43,14 +43,11 @@
                       <table id="datatable" class="table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.id') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.name') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.fullname') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.email') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.extension') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.tenant') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.role') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.status') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.id') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.name') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.slug') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.desc') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.level') }}</th>
                           <th>{{ trans('adminlte_lang::message.ct') }}</th>
                           <th>{{ trans('adminlte_lang::message.ut') }}</th>
                           <th>{{ trans('adminlte_lang::message.op') }}</th>
@@ -61,12 +58,9 @@
                         <tr>
                           <td>{{$record->id}}</td>
                           <td>{{$record->name}}</td>
-                          <td>{{$record->fullname}}</td>
-                          <td>{{$record->email}}</td>
-                          <td>{{$record->extension}}</td>
-                          <td>{{$record->tenant}}</td>
-                          <td>{{$record->role}}</td>
-                          <td>{{intval($record->status)==0?trans('adminlte_lang::message.usercolumns.down'):trans('adminlte_lang::message.usercolumns.run')}}</td>
+                          <td>{{$record->slug}}</td>
+                          <td>{{$record->description}}</td>
+                          <td>{{$record->level}}</td>
                           <td>{{$record->created_at}}</td>
                           <td>{{$record->updated_at}}</td>
                           <td>
@@ -78,14 +72,11 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                         <th>{{ trans('adminlte_lang::message.usercolumns.id') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.name') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.fullname') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.email') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.extension') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.tenant') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.role') }}</th>
-                          <th>{{ trans('adminlte_lang::message.usercolumns.status') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.id') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.name') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.slug') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.desc') }}</th>
+                          <th>{{ trans('adminlte_lang::message.rolecolumns.level') }}</th>
                           <th>{{ trans('adminlte_lang::message.ct') }}</th>
                           <th>{{ trans('adminlte_lang::message.ut') }}</th>
                           <th>{{ trans('adminlte_lang::message.op') }}</th>
@@ -112,51 +103,23 @@
               {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
-                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}:</label>
+                  <label for="name">{{ trans('adminlte_lang::message.rolecolumns.name') }}:</label>
                   <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}:</label>
-                  <input type="text" class="form-control" id="fullname" name="fullname">
+                  <label for="slug">{{ trans('adminlte_lang::message.rolecolumns.slug') }}:</label>
+                  <input type="text" class="form-control" id="slug" name="slug">
                 </div>
                 <div class="form-group">
-                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}:</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="default@raypbx.com">
-                 </div>
-                 <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}:</label>
-                  <input type="password" class="form-control" id="password" name="password">
-                 </div>
-                 <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}:</label>
-                  <input type="password" class="form-control" id="retrypepassword" name="retrypepassword">
+                  <label for="desc">{{ trans('adminlte_lang::message.rolecolumns.desc') }}:</label>
+                  <input type="text" class="form-control" id="desc" name="desc">
                  </div>
                 <div class="form-group">
-                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
-                  <select class="form-control" id="roles" name="role_id">
-                    <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
-                    <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
-                    <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}:</label>
-                  <select class="form-control" id="tenants" name="tenant_id">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}:</label>
-                  <select class="form-control" id="extensions" name="extension_id">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}:</label>
-                  <select class="form-control" id="status" name="status">
-                    <option value="0">{{ trans('adminlte_lang::message.usercolumns.down')}}</option>
-                    <option value="1" selected="selected">{{ trans('adminlte_lang::message.usercolumns.run')}}</option>
-                  </select>
+                  <label for="level">{{ trans('adminlte_lang::message.rolecolumns.level') }}:</label>
+                  <input type="text" class="form-control" id="level" name="level">
                 </div>
               </div>
+              <!--<button type="submit" class="btn btn-default">{{ trans('adminlte_lang::message.crudcolumns.submit')}}</button>-->
             </form>
           </div>
           <div class="modal-footer">
@@ -183,51 +146,23 @@
               <input type="hidden" id="id" name="id">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}:</label>
+                  <label for="name">{{ trans('adminlte_lang::message.rolecolumns.name') }}:</label>
                   <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}:</label>
-                  <input type="text" class="form-control" id="fullname" name="fullname">
+                  <label for="slug">{{ trans('adminlte_lang::message.rolecolumns.slug') }}:</label>
+                  <input type="text" class="form-control" id="slug" name="slug">
                 </div>
                 <div class="form-group">
-                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}:</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="default@raypbx.com">
-                 </div>
-                 <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}:</label>
-                  <input type="password" class="form-control" id="password" name="password" placeholder="●●●●●●">
-                 </div>
-                 <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}:</label>
-                  <input type="password" class="form-control" id="retrypepassword" name="retrypepassword" placeholder="●●●●●●">
+                  <label for="desc">{{ trans('adminlte_lang::message.rolecolumns.desc') }}:</label>
+                  <input type="text" class="form-control" id="desc" name="desc">
                  </div>
                 <div class="form-group">
-                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
-                  <select class="form-control" id="roles" name="role_id">
-                    <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
-                    <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
-                    <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}:</label>
-                  <select class="form-control" id="tenants" name="tenant_id">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}:</label>
-                  <select class="form-control" id="extensions" name="extension_id">
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}:</label>
-                  <select class="form-control" id="status" name="status">
-                    <option value="0">{{ trans('adminlte_lang::message.usercolumns.down')}}</option>
-                    <option value="1">{{ trans('adminlte_lang::message.usercolumns.run')}}</option>
-                  </select>
+                  <label for="level">{{ trans('adminlte_lang::message.rolecolumns.level') }}:</label>
+                  <input type="text" class="form-control" id="level" name="level">
                 </div>
               </div>
+              <!--<button type="submit" class="btn btn-default">{{ trans('adminlte_lang::message.crudcolumns.update')}}</button>-->
             </form>
           </div>
           <div class="modal-footer">
@@ -245,12 +180,10 @@
 <?php 
     function script_parameter(){
         $object = array();
-        $object['create_url'] = url('account/user/c');
-        $object['read_url']   = url('account/user/r');
-        $object['update_url'] = url('account/user/u');
-        $object['delete_url'] = url('account/user/d');
-        $object['rt_url']     = url('account/tenant/r');
-        $object['re_url']     = url('account/extension/r');
+        $object['create_url'] = url('account/role/c');
+        $object['read_url']   = url('account/role/r');
+        $object['update_url'] = url('account/role/u');
+        $object['delete_url'] = url('account/role/d');
 
         $object_json = json_encode($object);
         return $object_json;
@@ -270,7 +203,6 @@
             $.ajax({
                 url: ray.create_url,
                 type: $(this).attr('method'),
-                dataType:'json',
                 data: $(this).serialize() + "&_token={{ csrf_token() }}",
                 beforeSend: addButterBar.createButterbar("{{ trans('adminlte_lang::message.crudcolumns.submitting') }}"),
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -286,18 +218,16 @@
                         tbody += '<tr>';
                         tbody += '<td>'+item.id+'</td>';
                         tbody += '<td>'+item.name+'</td>';
-                        tbody += '<td>'+item.fullname+'</td>';
-                        tbody += '<td>'+item.email+'</td>';
-                        tbody += '<td>'+item.extension+'</td>';
-                        tbody += '<td>'+item.tenant+'</td>';
-                        tbody += '<td>'+item.role+'</td>';
-                        tbody += '<td>'+(parseInt(item.status)==0?"{{ trans('adminlte_lang::message.tenantcolumns.down') }}":"{{ trans('adminlte_lang::message.tenantcolumns.run') }}")+'</td>';
+                        tbody += '<td>'+item.slug+'</td>';
+                        tbody += '<td>'+item.description+'</td>';
+                        tbody += '<td>'+item.level+'</td>';
                         tbody += '<td>'+item.created_at+'</td>';
                         tbody += '<td>'+item.updated_at+'</td>';
                         tbody += '<td><a class="btn btn-block" data-toggle="modal" data-target="#edit-modal" onclick="readItem(\''+item.id+'\')"><i class="glyphicon glyphicon-edit"></i></a><a class="btn btn-block" onclick="deleteItem(\''+item.id+'\')"><i class="glyphicon glyphicon-trash"></i></a></td>';
                         tbody += '</tr>';
                     });
                     
+                    //To completely delete and remove the datatable object with its DOM elements you need to :
                     $("#datatable").dataTable().fnDestroy();
                     $('#datatable tbody').empty();
                     
@@ -328,22 +258,20 @@
                         tbody += '<tr>';
                         tbody += '<td>'+item.id+'</td>';
                         tbody += '<td>'+item.name+'</td>';
-                        tbody += '<td>'+item.fullname+'</td>';
-                        tbody += '<td>'+item.email+'</td>';
-                        tbody += '<td>'+item.extension+'</td>';
-                        tbody += '<td>'+item.tenant+'</td>';
-                        tbody += '<td>'+item.role+'</td>';
-                        tbody += '<td>'+(parseInt(item.status)==0?"{{ trans('adminlte_lang::message.tenantcolumns.down') }}":"{{ trans('adminlte_lang::message.tenantcolumns.run') }}")+'</td>';
+                        tbody += '<td>'+item.slug+'</td>';
+                        tbody += '<td>'+item.description+'</td>';
+                        tbody += '<td>'+item.level+'</td>';
                         tbody += '<td>'+item.created_at+'</td>';
                         tbody += '<td>'+item.updated_at+'</td>';
                         tbody += '<td><a class="btn btn-block" data-toggle="modal" data-target="#edit-modal" onclick="readItem(\''+item.id+'\')"><i class="glyphicon glyphicon-edit"></i></a><a class="btn btn-block" onclick="deleteItem(\''+item.id+'\')"><i class="glyphicon glyphicon-trash"></i></a></td>';
                         tbody += '</tr>';
                     });
                     
+                    //To completely delete and remove the datatable object with its DOM elements you need to :
                     $("#datatable").dataTable().fnDestroy();
                     $('#datatable tbody').empty();
                     
-                    $('#datatable tbody').html(tbody);
+                    $('#datatable tbody').html(tbody);                    
                     $("#datatable").dataTable();
                     
                     $('#edit-modal').modal('hide');
@@ -366,33 +294,29 @@
         };
     });
     
-    function readItem(id){
+    function readItem(id)
+    {
       $.ajax({
         url: ray.read_url,
         type:"POST", 
         data: {"id":id, _token: "{{ csrf_token() }}"}, 
         success: function(item){
-            $("#edit-modal #id").val(item.id);
-            $("#edit-modal #name").val(item.name);
-            $("#edit-modal #fullname").val(item.fullname);
-            $("#edit-modal #email").val(item.email);
-            $("#edit-modal #status").val(Number(item.status));
-            $("#edit-modal #roles").val(Number(item.role_id));
-            //update tenants and extensions
-            readTenants();
-            $("#edit-modal #tenants").val(Number(item.tenant_id));
-            readExtensions(item.tenant_id);
-            $("#edit-modal #extensions").val(Number(item.extension_id));
+          $("#edit-modal #id").val(item.id);
+          $("#edit-modal #name").val(item.name);
+          $("#edit-modal #slug").val(item.slug);
+          $("#edit-modal #desc").val(item.description);
+          $("#edit-modal #level").val(item.level);
         }
       });
     }
  
-    function deleteItem(id){
+    function deleteItem(id)
+    {
       var conf = confirm("{{ trans('adminlte_lang::message.crudcolumns.deleteconfirm') }}");
       if(conf){
         $.ajax({
           url: ray.delete_url,
-          type: "POST", 
+          type:"POST", 
           data: {"id":id, _token: "{{ csrf_token() }}"}, 
           success: function(response){
             var t = addButterBar;
@@ -405,44 +329,5 @@
         return false;
       }
     }
-    
-    function readExtensions(tenant_id){
-        $.ajax({
-            url: ray.re_url,
-            type: "POST", 
-            async: false ,
-            data: {"tenant_id":tenant_id, _token: "{{ csrf_token() }}"}, 
-            success: function(result){
-                var result_obj = eval(result);
-                var options = '';
-                $(result_obj).each(function(index, item){
-                    options += '<option value='+item.id+'>'+item.number+'</option>';
-                });
-                $('form #extensions').html(options);
-            }
-        });
-    }
-    
-    function readTenants(){
-        $.ajax({
-            url: ray.rt_url,
-            type: "POST",
-            async: false ,
-            data: {_token: "{{ csrf_token() }}"}, 
-            success: function(result){
-                var result_obj = eval(result);
-                var options = '';
-                $(result_obj).each(function(index, item){
-                    options += '<option value='+item.id+'>'+item.name+' - '+item.desc+'</option>';
-                });
-                $('form #tenants').html(options);
-            }
-        });
-    }
-    
-    $("form #tenants").change(function(){
-        var tenant_id = $(this).find("option:selected").val();
-        readExtensions(tenant_id);
-    });
 </script>
 @endsection

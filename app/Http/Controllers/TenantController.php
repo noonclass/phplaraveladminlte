@@ -4,87 +4,95 @@ namespace App\Http\Controllers;
 
 use App\Tenant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TenantController extends Controller
 {
     /*
-     * Read and Display all data
+     * Read and Display all records
      */
     public function index()
     {
-        $data = Tenant::all();
-        return view('tenant')->with('data',$data);
+        $result = Tenant::all();
+        return view('tenant')->with('data',$result);
     }
 
     /*
-     * create record
+     * Create record
      */
     public function create(Request $request)
     {
-        $data = new Tenant;
-        $data->name                 = $request->name;
-        $data->desc	                = $request->desc;	
-        $data->access_number        = $request->access_number;
-        $data->extrinsic_number     = $request->extrinsic_number;
-        $data->gateway              = $request->gateway;
-        $data->prefix               = $request->prefix;
-        $data->welcome_file         = $request->welcome_file;
-        $data->nonwork_file         = $request->nonwork_file;
-        $data->moh_file             = $request->moh_file;
-        $data->blacklist_on         = $request->blacklist_on;
-        $data->whitelist_on         = $request->whitelist_on;
-        $data->call_rate            = $request->call_rate;
-        $data->call_package         = $request->call_package;
-        $data->call_package_amount  = $request->call_package_amount;
-        $data->call_package_minutes = $request->call_package_minutes;
-        $data->status               = $request->status;
-        $data->save();
-        //redirect to back page
-        //return back()->with('success','Record Added successfully.');
-        $data = Tenant::all();
-        return response()->json($data);
+        try{
+            $tenant = new Tenant;
+            $tenant->name                 = $request->name;
+            $tenant->desc	              = $request->desc;	
+            $tenant->access_number        = $request->access_number;
+            $tenant->extrinsic_number     = $request->extrinsic_number;
+            $tenant->gateway              = $request->gateway;
+            $tenant->prefix               = $request->prefix;
+            $tenant->welcome_file         = $request->welcome_file;
+            $tenant->nonwork_file         = $request->nonwork_file;
+            $tenant->moh_file             = $request->moh_file;
+            $tenant->blacklist_on         = $request->blacklist_on;
+            $tenant->whitelist_on         = $request->whitelist_on;
+            $tenant->call_rate            = $request->call_rate;
+            $tenant->call_package         = $request->call_package;
+            $tenant->call_package_amount  = $request->call_package_amount;
+            $tenant->call_package_minutes = $request->call_package_minutes;
+            $tenant->status               = $request->status;
+            $tenant->save();
+        }catch(\Illuminate\Database\QueryException $e){
+            return response()->json(['message' => $e->getMessage()], 406);
+        }
+        
+        $result = Tenant::all();
+        return response()->json($result);
     }
     
     /*
-     * Read data
+     * Read record
      */
     public function read(Request $request)
     {
         if($request->ajax()){
-            $id = $request->id;
-            $info = Tenant::find($id);
-            return response()->json($info);
+            if(isset($request->id)){
+                $id = $request->id;
+                $result = Tenant::find($id);
+            }else{
+                $result = Tenant::all();
+            }
+            
+            return response()->json($result);
         }
     }
 
     /*
-     * Update data
+     * Update record
      */
     public function update(Request $request)
     {
         $id = $request->id;
-        $data = Tenant::find($id);
-        $data->name                 = $request->name;
-        $data->desc	                = $request->desc;	
-        $data->access_number        = $request->access_number;
-        $data->extrinsic_number     = $request->extrinsic_number;
-        $data->gateway              = $request->gateway;
-        $data->prefix               = $request->prefix;
-        $data->welcome_file         = $request->welcome_file;
-        $data->nonwork_file         = $request->nonwork_file;
-        $data->moh_file             = $request->moh_file;
-        $data->blacklist_on         = $request->blacklist_on;
-        $data->whitelist_on         = $request->whitelist_on;
-        $data->call_rate            = $request->call_rate;
-        $data->call_package         = $request->call_package;
-        $data->call_package_amount  = $request->call_package_amount;
-        $data->call_package_minutes = $request->call_package_minutes;
-        $data->status               = $request->status;
-        $data->save();
-        //redirect to back page
-        //return back()->with('success','Record Updated successfully.');
-        $data = Tenant::all();
-        return response()->json($data);
+        $tenant = Tenant::find($id);
+        $tenant->name                 = $request->name;
+        $tenant->desc	              = $request->desc;	
+        $tenant->access_number        = $request->access_number;
+        $tenant->extrinsic_number     = $request->extrinsic_number;
+        $tenant->gateway              = $request->gateway;
+        $tenant->prefix               = $request->prefix;
+        $tenant->welcome_file         = $request->welcome_file;
+        $tenant->nonwork_file         = $request->nonwork_file;
+        $tenant->moh_file             = $request->moh_file;
+        $tenant->blacklist_on         = $request->blacklist_on;
+        $tenant->whitelist_on         = $request->whitelist_on;
+        $tenant->call_rate            = $request->call_rate;
+        $tenant->call_package         = $request->call_package;
+        $tenant->call_package_amount  = $request->call_package_amount;
+        $tenant->call_package_minutes = $request->call_package_minutes;
+        $tenant->status               = $request->status;
+        $tenant->save();
+        
+        $result = Tenant::all();
+        return response()->json($result);
     }
 
     /*
@@ -93,11 +101,11 @@ class TenantController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        $data = Tenant::find($id);
-        $response = $data->delete();
-        if($response)
-            echo "Record Deleted successfully.";
+        $tenant = Tenant::find($id);
+        $result = $tenant->delete();
+        if($result)
+            echo trans('adminlte_lang::message.crudcolumns.succ');
         else
-            echo "There was a problem. Please try again later.";
+            echo trans('adminlte_lang::message.crudcolumns.fail');
     }
 }

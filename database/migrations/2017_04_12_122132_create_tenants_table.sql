@@ -59,8 +59,8 @@ INSERT INTO `tenantmeta` (`meta_id`, `tenant_id`, `meta_key`, `meta_value`) VALU
 CREATE TABLE `extensions` (
 `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT ,
 `number` varchar(32) NOT NULL COMMENT '分机号码' ,
-`password` varchar(32) NOT NULL COMMENT '分机密码' ,
-`alias_number` varchar(16) NULL DEFAULT NULL COMMENT '外线号码' ,
+`password` varchar(255) NOT NULL COMMENT '分机密码' ,
+`alias_number` varchar(32) NULL DEFAULT NULL COMMENT '外线号码' ,
 `tenant_id` int(11) NOT NULL COMMENT '租户ID' ,
 `created_at` datetime NULL DEFAULT NULL ,
 `updated_at` datetime NULL DEFAULT NULL ,
