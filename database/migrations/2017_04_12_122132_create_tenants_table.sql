@@ -23,7 +23,7 @@ CREATE TABLE `tenants` (
 `created_at` datetime NULL DEFAULT NULL ,
 `updated_at` datetime NULL DEFAULT NULL ,
 PRIMARY KEY (`id`),
-INDEX `id` (`id`) 
+INDEX `name` (`name`) 
 );
 
 --
