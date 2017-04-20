@@ -288,8 +288,8 @@
                         tbody += '<td>'+item.name+'</td>';
                         tbody += '<td>'+item.fullname+'</td>';
                         tbody += '<td>'+item.email+'</td>';
-                        tbody += '<td>'+item.extension+'</td>';
-                        tbody += '<td>'+item.tenant+'</td>';
+                        tbody += '<td>'+(item.extension?item.extension:"")+'</td>';
+                        tbody += '<td>'+(item.tenant?item.tenant:"")+'</td>';
                         tbody += '<td>'+item.role+'</td>';
                         tbody += '<td>'+(parseInt(item.status)==0?"{{ trans('adminlte_lang::message.tenantcolumns.down') }}":"{{ trans('adminlte_lang::message.tenantcolumns.run') }}")+'</td>';
                         tbody += '<td>'+item.created_at+'</td>';
@@ -330,8 +330,8 @@
                         tbody += '<td>'+item.name+'</td>';
                         tbody += '<td>'+item.fullname+'</td>';
                         tbody += '<td>'+item.email+'</td>';
-                        tbody += '<td>'+item.extension+'</td>';
-                        tbody += '<td>'+item.tenant+'</td>';
+                        tbody += '<td>'+(item.extension?item.extension:"")+'</td>';
+                        tbody += '<td>'+(item.tenant?item.tenant:"")+'</td>';
                         tbody += '<td>'+item.role+'</td>';
                         tbody += '<td>'+(parseInt(item.status)==0?"{{ trans('adminlte_lang::message.tenantcolumns.down') }}":"{{ trans('adminlte_lang::message.tenantcolumns.run') }}")+'</td>';
                         tbody += '<td>'+item.created_at+'</td>';
@@ -439,6 +439,21 @@
             }
         });
     }
+    
+    $("form #roles").change(function(){
+        var role_id = $(this).find("option:selected").val();
+        if (role_id == 1){
+            $('form #tenants').html('');
+            $('form #tenants').attr('disabled','');
+            $('form #extensions').html('');
+            $('form #extensions').attr('disabled','');
+        }else{
+            readTenants();
+            readExtensions(1);//default
+            $('form #tenants').removeAttr('disabled');
+            $('form #extensions').removeAttr('disabled');
+        }
+    });
     
     $("form #tenants").change(function(){
         var tenant_id = $(this).find("option:selected").val();
