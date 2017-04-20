@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Ultraware\Roles\Models\Role;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,12 +15,32 @@ class UserController extends Controller
      */
     public function index()
     {
-        $result = DB::table('users')->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
-                ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
-                ->leftJoin('extensions', 'users.extension_id', '=', 'extensions.id')
-                ->leftJoin('tenants', 'users.tenant_id', '=', 'tenants.id')
-                ->select('users.*', 'roles.description as role', 'extensions.number as extension', 'tenants.name as tenant')
-                ->get();
+        if (Auth::user()->hasRole('admin')){
+            $result = DB::table('users')->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+                    ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
+                    ->leftJoin('extensions', 'users.extension_id', '=', 'extensions.id')
+                    ->leftJoin('tenants', 'users.tenant_id', '=', 'tenants.id')
+                    ->select('users.*', 'roles.description as role', 'extensions.number as extension', 'tenants.name as tenant')
+                    ->get();
+        }elseif (Auth::user()->hasRole('moderator')){
+            $tenantID = Auth::user()->tenant_id;
+            $result = DB::table('users')->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+                    ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
+                    ->leftJoin('extensions', 'users.extension_id', '=', 'extensions.id')
+                    ->leftJoin('tenants', 'users.tenant_id', '=', 'tenants.id')
+                    ->select('users.*', 'roles.description as role', 'extensions.number as extension', 'tenants.name as tenant')
+                    ->where('users.tenant_id', $tenantID)
+                    ->get();
+        }else{
+            $id = Auth::user()->id;
+            $result = array(0 => DB::table('users')->leftJoin('role_user', 'users.id', '=', 'role_user.user_id')
+                    ->leftJoin('roles', 'role_user.role_id', '=', 'roles.id')
+                    ->leftJoin('extensions', 'users.extension_id', '=', 'extensions.id')
+                    ->leftJoin('tenants', 'users.tenant_id', '=', 'tenants.id')
+                    ->select('users.*', 'roles.description as role', 'extensions.number as extension', 'tenants.name as tenant')
+                    ->where('users.id', $id)
+                    ->first());
+        }
         return view('user')->with('data',$result);
     }
 

@@ -63,11 +63,16 @@
             <li class="treeview{{ (in_array(Route::currentRouteName(), array('tenant','extension','user','role','permission'))?' active':'') }}">
                 <a href="#"><i class='fa fa-users'></i> <span>{{ trans('adminlte_lang::message.account') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                    @role('admin|moderator')
                     <li {{ (Route::is('tenant') ? 'class="active"' : '') }}><a href="{{ url('account/tenant') }}">{{ trans('adminlte_lang::message.tenant') }}</a></li>
+                    @endif
                     <li {{ (Route::is('extension') ? 'class="active"' : '') }}><a href="{{ url('account/extension') }}">{{ trans('adminlte_lang::message.extension') }}</a></li>
                     <li {{ (Route::is('user') ? 'class="active"' : '') }}><a href="{{ url('account/user') }}">{{ trans('adminlte_lang::message.user') }}</a></li>
+                    @role('admin')
+                    <li role="separator" class="divider"></li>
                     <li {{ (Route::is('role') ? 'class="active"' : '') }}><a href="{{ url('account/role') }}">{{ trans('adminlte_lang::message.role') }}</a></li>
                     <li {{ (Route::is('permission') ? 'class="active"' : '') }}><a href="{{ url('account/permission') }}">{{ trans('adminlte_lang::message.permission') }}</a></li>
+                   @endif
                 </ul>
             </li>
         </ul><!-- /.sidebar-menu -->

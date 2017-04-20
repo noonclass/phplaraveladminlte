@@ -27,7 +27,11 @@
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
+                        @role('admin|moderator')
                         <a class="btn btn-app" data-toggle="modal" data-target="#add-modal" onclick="readTenants()"><i class="glyphicon glyphicon-plus"></i>{{ trans('adminlte_lang::message.add') }}</a>
+                        @else
+                        <a class="btn btn-app disabled" data-toggle="modal" data-target="#add-modal" onclick="readTenants()"><i class="glyphicon glyphicon-plus"></i>{{ trans('adminlte_lang::message.add') }}</a>
+                        @endrole
                         <a class="btn btn-app"><span class="badge bg-green">N</span><i class="glyphicon glyphicon-export"></i>{{ trans('adminlte_lang::message.export') }}</a>
                         <a class="btn btn-app"><span class="badge bg-purple">N</span><i class="glyphicon glyphicon-import"></i>{{ trans('adminlte_lang::message.import') }}</a>
                         <a class="btn btn-app"><span class="badge bg-red">N</span><i class="glyphicon glyphicon-cog"></i>{{ trans('adminlte_lang::message.cfg') }}</a>
@@ -133,10 +137,21 @@
                  </div>
                 <div class="form-group">
                   <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
+                  @role('admin')
                   <select class="form-control" id="roles" name="role_id">
                     <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
                     <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
                     <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                  @else
+                    @role('moderator')
+                    <select class="form-control" id="roles" name="role_id">
+                      <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
+                      <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                    @else
+                    <select class="form-control" id="roles" name="role_id">
+                      <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                    @endrole
+                  @endrole                  
                   </select>
                 </div>
                 <div class="form-group">
@@ -204,10 +219,21 @@
                  </div>
                 <div class="form-group">
                   <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
+                  @role('admin')
                   <select class="form-control" id="roles" name="role_id">
                     <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
                     <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
                     <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                  @else
+                    @role('moderator')
+                    <select class="form-control" id="roles" name="role_id">
+                      <option value="2">{{ trans('adminlte_lang::message.usercolumns.moderator')}}</option>
+                      <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                    @else
+                    <select class="form-control" id="roles" name="role_id">
+                      <option value="3" selected="selected">{{ trans('adminlte_lang::message.usercolumns.user')}}</option>
+                    @endrole
+                  @endrole                  
                   </select>
                 </div>
                 <div class="form-group">

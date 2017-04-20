@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Extension;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ExtensionController extends Controller
 {
@@ -13,9 +14,24 @@ class ExtensionController extends Controller
      */
     public function index()
     {
-        $result = DB::table('extensions')->leftJoin('tenants', 'extensions.tenant_id', '=', 'tenants.id')
-                    ->select('extensions.*', 'tenants.name as tenant')
-                    ->get();
+        if (Auth::user()->hasRole('admin')){
+            $result = DB::table('extensions')->leftJoin('tenants', 'extensions.tenant_id', '=', 'tenants.id')
+                        ->select('extensions.*', 'tenants.name as tenant')
+                        ->get();
+        }elseif (Auth::user()->hasRole('moderator')){
+            $tenantID = Auth::user()->tenant_id;
+            $result = DB::table('extensions')->leftJoin('tenants', 'extensions.tenant_id', '=', 'tenants.id')
+                        ->select('extensions.*', 'tenants.name as tenant')
+                        ->where('extensions.tenant_id', $tenantID)
+                        ->get();
+        }else{
+            $id = Auth::user()->id;
+            $result = array(0 => DB::table('extensions')->leftJoin('tenants', 'extensions.tenant_id', '=', 'tenants.id')
+                        ->leftJoin('users', 'extensions.id', '=', 'users.extension_id')
+                        ->select('extensions.*', 'tenants.name as tenant')
+                        ->where('users.id', $id)
+                        ->first());
+        }
         return view('extension')->with('data',$result);
     }
 
@@ -51,11 +67,22 @@ class ExtensionController extends Controller
                 $id = $request->id;
                 $result = Extension::find($id);
             }
-            else if(isset($request->tenant_id)){
-                $tenant_id = $request->tenant_id;
-                $result = DB::table('extensions')->where('extensions.tenant_id', $tenant_id)->get();
-            }else{
-                 $result = Extension::all();
+            else{
+                if (Auth::user()->hasRole('admin')){
+                    if(isset($request->tenant_id)){
+                        $tenant_id = $request->tenant_id;
+                        $result = DB::table('extensions')->where('extensions.tenant_id', $tenant_id)->get();
+                    }else{
+                         $result = Extension::all();
+                    }
+                }elseif (Auth::user()->hasRole('moderator')){
+                    $tenantID = Auth::user()->tenant_id;
+                    $result = DB::table('extensions')->where('extensions.tenant_id', $tenantID)->get();
+                }
+                else{
+                    $extensionID = Auth::user()->extension_id;
+                    $result = Extension::find($extensionID);
+                }
             }
             
             return response()->json($result);

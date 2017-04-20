@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tenant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TenantController extends Controller
 {
@@ -13,7 +14,13 @@ class TenantController extends Controller
      */
     public function index()
     {
-        $result = Tenant::all();
+        if (Auth::user()->hasRole('admin')){
+            $result = Tenant::all();
+        }elseif(Auth::user()->hasRole('moderator')){
+            $tenantID = Auth::user()->tenant_id;
+            $result = array(0 => DB::table('tenants')->where('id', $tenantID)
+                        ->first());
+        }else{}
         return view('tenant')->with('data',$result);
     }
 
@@ -59,7 +66,12 @@ class TenantController extends Controller
                 $id = $request->id;
                 $result = Tenant::find($id);
             }else{
-                $result = Tenant::all();
+                if (Auth::user()->hasRole('admin')){
+                    $result = Tenant::all();
+                }else{
+                    $tenantID = Auth::user()->tenant_id;
+                    $result = Tenant::find($tenantID);
+                }
             }
             
             return response()->json($result);
