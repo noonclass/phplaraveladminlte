@@ -9,7 +9,7 @@
     <div id="app" v-cloak>
         <div class="login-box">
             <div class="login-logo">
-                <a href="{{ url('/home') }}"><b>Admin</b>LTE</a>
+                <a href="{{ url('/home') }}"><b>Ray</b>PBX</a>
             </div><!-- /.login-logo -->
 
         @if (count($errors) > 0)
@@ -22,7 +22,8 @@
                 </ul>
             </div>
         @endif
-
+        
+        <div class="login-box-card"></div>
         <div class="login-box-body">
         <p class="login-box-msg"> {{ trans('adminlte_lang::message.siginsession') }} </p>
         <form action="{{ url('/login') }}" method="post">
@@ -35,7 +36,7 @@
             -->
             <div class="form-group has-feedback">
                 <input type="text" class="form-control" placeholder="{{ trans('adminlte_lang::message.username') }}" name="name"/>
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
                 <input type="password" class="form-control" placeholder="{{ trans('adminlte_lang::message.password') }}" name="password"/>
@@ -54,11 +55,6 @@
                 </div><!-- /.col -->
             </div>
         </form>
-
-        @include('adminlte::auth.partials.social_login')
-
-        <a href="{{ url('/password/reset') }}">{{ trans('adminlte_lang::message.forgotpassword') }}</a><br>
-        <a href="{{ url('/register') }}" class="text-center">{{ trans('adminlte_lang::message.registermember') }}</a>
 
     </div><!-- /.login-box-body -->
 
