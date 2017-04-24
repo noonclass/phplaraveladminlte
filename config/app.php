@@ -165,6 +165,11 @@ return [
          *  Roles and Permissions Service provider
          */
         Ultraware\Roles\RolesServiceProvider::class,
+        
+        /**
+         *  Excel provider
+         */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -215,6 +220,11 @@ return [
          * Acacha AdminLTE template alias
          */
         'AdminLTE' => Acacha\AdminLTETemplateLaravel\Facades\AdminLTE::class,
+        
+         /**
+         *  Excel template alias
+         */
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

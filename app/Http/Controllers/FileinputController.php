@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use Illuminate\Http\Request;
 
 class FileinputController extends Controller
@@ -34,6 +35,8 @@ class FileinputController extends Controller
         }
 
         if ($success === true) {
+            //NOTE:: 对于用户模板，做数据有效性检查
+            
             $output = ['realname' => $realname];
         } elseif ($success === false) {
             unlink($target);
