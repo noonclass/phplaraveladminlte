@@ -100,27 +100,26 @@
             <h4 class="modal-title">{{ trans('adminlte_lang::message.crudcolumns.createrecord')}}</h4>
           </div>
           <div class="modal-body">
-            <form id="add-form" action="" method="post">
-              {{ csrf_field() }}
+            <form id="add-modal-form" action="" method="post">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="number">{{ trans('adminlte_lang::message.extensioncolumns.number') }}:</label>
+                  <label for="number">{{ trans('adminlte_lang::message.extensioncolumns.number') }}</label>
                   <input type="text" class="form-control" id="number" name="number">
                 </div>
                 <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.extensioncolumns.password') }}:</label>
+                  <label for="password">{{ trans('adminlte_lang::message.extensioncolumns.password') }}</label>
                   <input type="password" class="form-control" id="password" name="password">
                  </div>
                  <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.extensioncolumns.retrypepassword') }}:</label>
+                  <label for="retrypepassword">{{ trans('adminlte_lang::message.extensioncolumns.retrypepassword') }}</label>
                   <input type="password" class="form-control" id="retrypepassword" name="retrypepassword">
                  </div>
                 <div class="form-group">
-                  <label for="alias_number">{{ trans('adminlte_lang::message.extensioncolumns.alias_number') }}:</label>
+                  <label for="alias_number">{{ trans('adminlte_lang::message.extensioncolumns.alias_number') }}</label>
                   <input type="text" class="form-control" id="alias_number" name="alias_number">
                 </div>
                 <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.extensioncolumns.tenant') }}:</label>
+                  <label for="tenant">{{ trans('adminlte_lang::message.extensioncolumns.tenant') }}</label>
                   <select class="form-control" id="tenants" name="tenant_id">
                   </select>
                 </div>
@@ -128,7 +127,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" id="add-submit">{{ trans('adminlte_lang::message.crudcolumns.submit')}}</button>
+            <button class="btn btn-primary" id="add-modal-submit">{{ trans('adminlte_lang::message.crudcolumns.submit')}}</button>
             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ trans('adminlte_lang::message.crudcolumns.close')}}</button>
           </div>
         </div>
@@ -146,12 +145,11 @@
             <h4 class="modal-title">{{ trans('adminlte_lang::message.crudcolumns.updaterecord')}}</h4>
           </div>
           <div class="modal-body">
-            <form id="edit-form" action="" method="post">
-              {{ csrf_field() }}
+            <form id="edit-modal-form" action="" method="post">
               <input type="hidden" id="id" name="id">
               <div class="box-body">
                <div class="form-group">
-                  <label for="number">{{ trans('adminlte_lang::message.extensioncolumns.number') }}:</label>
+                  <label for="number">{{ trans('adminlte_lang::message.extensioncolumns.number') }}</label>
                   @role('admin|moderator')
                   <input type="text" class="form-control" id="number" name="number">
                   @else
@@ -159,19 +157,19 @@
                   @endrole
                 </div>
                 <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.extensioncolumns.password') }}:</label>
+                  <label for="password">{{ trans('adminlte_lang::message.extensioncolumns.password') }}</label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="●●●●●●">
                  </div>
                  <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.extensioncolumns.retrypepassword') }}:</label>
+                  <label for="retrypepassword">{{ trans('adminlte_lang::message.extensioncolumns.retrypepassword') }}</label>
                   <input type="password" class="form-control" id="retrypepassword" name="retrypepassword" placeholder="●●●●●●">
                  </div>
                 <div class="form-group">
-                  <label for="alias_number">{{ trans('adminlte_lang::message.extensioncolumns.alias_number') }}:</label>
+                  <label for="alias_number">{{ trans('adminlte_lang::message.extensioncolumns.alias_number') }}</label>
                   <input type="text" class="form-control" id="alias_number" name="alias_number">
                 </div>
                 <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.extensioncolumns.tenant') }}:</label>
+                  <label for="tenant">{{ trans('adminlte_lang::message.extensioncolumns.tenant') }}</label>
                   <select class="form-control" id="tenants" name="tenant_id">
                   </select>
                 </div>
@@ -179,7 +177,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" id="edit-submit">{{ trans('adminlte_lang::message.crudcolumns.update')}}</button>
+            <button class="btn btn-primary" id="edit-modal-submit">{{ trans('adminlte_lang::message.crudcolumns.update')}}</button>
             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ trans('adminlte_lang::message.crudcolumns.close')}}</button>
           </div>
         </div>
@@ -207,13 +205,13 @@
     var ray = <?php echo script_parameter(); ?>;
 
     $(document).ready(function() {
-         $(document).on("click", "#add-submit", function (e) {
-            $('#add-form').submit();
+         $(document).on("click", "#add-modal-submit", function (e) {
+            $('#add-modal-form').submit();
         });
-        $(document).on("click", "#edit-submit", function (e) {
-            $('#edit-form').submit();
+        $(document).on("click", "#edit-modal-submit", function (e) {
+            $('#edit-modal-form').submit();
         });
-        $(document).on("submit", "#add-form", function() {
+        $(document).on("submit", "#add-modal-form", function() {
             $.ajax({
                 url: ray.create_url,
                 type: $(this).attr('method'),
@@ -251,7 +249,7 @@
             });
             return false;
         });
-        $(document).on("submit", "#edit-form", function() {
+        $(document).on("submit", "#edit-modal-form", function() {
             $.ajax({
                 url: ray.update_url,
                 type: $(this).attr('method'),

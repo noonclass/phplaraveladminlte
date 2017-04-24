@@ -4,11 +4,15 @@
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
+    <!-- Custom plugins -->
+    <link href="{{ asset('/plugins/datepicker3.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/plugins/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/plugins/bootstrap-wizard.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/plugins/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('/css/global.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('/plugins/datepicker3.css') }}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('/plugins/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('/css/global.css') }}" rel="stylesheet" type="text/css"/>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

@@ -112,31 +112,30 @@
             <h4 class="modal-title">{{ trans('adminlte_lang::message.crudcolumns.createrecord')}}</h4>
           </div>
           <div class="modal-body">
-            <form id="add-form" action="" method="post">
-              {{ csrf_field() }}
+            <form id="add-modal-form" action="" method="post">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}:</label>
+                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}</label>
                   <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}:</label>
+                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}</label>
                   <input type="text" class="form-control" id="fullname" name="fullname">
                 </div>
                 <div class="form-group">
-                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}:</label>
+                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}</label>
                   <input type="text" class="form-control" id="email" name="email" placeholder="default@raypbx.com">
                  </div>
                  <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}:</label>
+                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}</label>
                   <input type="password" class="form-control" id="password" name="password">
                  </div>
                  <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}:</label>
+                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}</label>
                   <input type="password" class="form-control" id="retrypepassword" name="retrypepassword">
                  </div>
                 <div class="form-group">
-                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
+                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}</label>
                   @role('admin')
                   <select class="form-control" id="roles" name="role_id">
                     <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
@@ -155,17 +154,17 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}:</label>
+                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}</label>
                   <select class="form-control" id="tenants" name="tenant_id">
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}:</label>
+                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}</label>
                   <select class="form-control" id="extensions" name="extension_id">
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}:</label>
+                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}</label>
                   <select class="form-control" id="status" name="status">
                     <option value="0">{{ trans('adminlte_lang::message.usercolumns.down')}}</option>
                     <option value="1" selected="selected">{{ trans('adminlte_lang::message.usercolumns.run')}}</option>
@@ -175,7 +174,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" id="add-submit">{{ trans('adminlte_lang::message.crudcolumns.submit')}}</button>
+            <button class="btn btn-primary" id="add-modal-submit">{{ trans('adminlte_lang::message.crudcolumns.submit')}}</button>
             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ trans('adminlte_lang::message.crudcolumns.close')}}</button>
           </div>
         </div>
@@ -193,32 +192,31 @@
             <h4 class="modal-title">{{ trans('adminlte_lang::message.crudcolumns.updaterecord')}}</h4>
           </div>
           <div class="modal-body">
-            <form id="edit-form" action="" method="post">
-              {{ csrf_field() }}
+            <form id="edit-modal-form" action="" method="post">
               <input type="hidden" id="id" name="id">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}:</label>
+                  <label for="name">{{ trans('adminlte_lang::message.usercolumns.name') }}</label>
                   <input type="text" class="form-control" id="name" name="name">
                 </div>
                 <div class="form-group">
-                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}:</label>
+                  <label for="fullname">{{ trans('adminlte_lang::message.usercolumns.fullname') }}</label>
                   <input type="text" class="form-control" id="fullname" name="fullname">
                 </div>
                 <div class="form-group">
-                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}:</label>
+                  <label for="email">{{ trans('adminlte_lang::message.usercolumns.email') }}</label>
                   <input type="text" class="form-control" id="email" name="email" placeholder="default@raypbx.com">
                  </div>
                  <div class="form-group">
-                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}:</label>
+                  <label for="password">{{ trans('adminlte_lang::message.usercolumns.password') }}</label>
                   <input type="password" class="form-control" id="password" name="password" placeholder="●●●●●●">
                  </div>
                  <div class="form-group">
-                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}:</label>
+                  <label for="retrypepassword">{{ trans('adminlte_lang::message.usercolumns.retrypepassword') }}</label>
                   <input type="password" class="form-control" id="retrypepassword" name="retrypepassword" placeholder="●●●●●●">
                  </div>
                 <div class="form-group">
-                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}:</label>
+                  <label for="role">{{ trans('adminlte_lang::message.usercolumns.role') }}</label>
                   @role('admin')
                   <select class="form-control" id="roles" name="role_id">
                     <option value="1">{{ trans('adminlte_lang::message.usercolumns.admin')}}</option>
@@ -237,17 +235,17 @@
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}:</label>
+                  <label for="tenant">{{ trans('adminlte_lang::message.usercolumns.tenant') }}</label>
                   <select class="form-control" id="tenants" name="tenant_id">
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}:</label>
+                  <label for="extension">{{ trans('adminlte_lang::message.usercolumns.extension') }}</label>
                   <select class="form-control" id="extensions" name="extension_id">
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}:</label>
+                  <label for="status">{{ trans('adminlte_lang::message.usercolumns.status') }}</label>
                   <select class="form-control" id="status" name="status">
                     <option value="0">{{ trans('adminlte_lang::message.usercolumns.down')}}</option>
                     <option value="1">{{ trans('adminlte_lang::message.usercolumns.run')}}</option>
@@ -257,7 +255,7 @@
             </form>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-primary" id="edit-submit">{{ trans('adminlte_lang::message.crudcolumns.update')}}</button>
+            <button class="btn btn-primary" id="edit-modal-submit">{{ trans('adminlte_lang::message.crudcolumns.update')}}</button>
             <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">{{ trans('adminlte_lang::message.crudcolumns.close')}}</button>
           </div>
         </div>
@@ -286,13 +284,13 @@
     var ray = <?php echo script_parameter(); ?>;
 
     $(document).ready(function() {
-         $(document).on("click", "#add-submit", function (e) {
-            $('#add-form').submit();
+         $(document).on("click", "#add-modal-submit", function (e) {
+            $('#add-modal-form').submit();
         });
-        $(document).on("click", "#edit-submit", function (e) {
-            $('#edit-form').submit();
+        $(document).on("click", "#edit-modal-submit", function (e) {
+            $('#edit-modal-form').submit();
         });
-        $(document).on("submit", "#add-form", function() {
+        $(document).on("submit", "#add-modal-form", function() {
             $.ajax({
                 url: ray.create_url,
                 type: $(this).attr('method'),
@@ -335,7 +333,7 @@
             });
             return false;
         });
-        $(document).on("submit", "#edit-form", function() {
+        $(document).on("submit", "#edit-modal-form", function() {
             $.ajax({
                 url: ray.update_url,
                 type: $(this).attr('method'),
