@@ -398,8 +398,8 @@
                         <div class="form-group">
                            <label for="user-import">{{ trans('adminlte_lang::message.tenantcolumns.import') }}</label>
                            <div class="input-group">
-                            <input type="text" class="form-control" id="user-import" name="user_import">
-                            <span class="input-group-addon"><i class="fa fa-upload"></i></span>
+                            <input type="hidden" id="user-import" name="user_import">
+                            <input type="file" class="form-control" id="upload" name="upload">
                           </div>
                         </div>
                     </div>
@@ -677,9 +677,33 @@
             //alert(ev.date.getFullYear().toString());
         }
         
-         /* wizard card4 section */
+        /* wizard card4 section */
         $("#limit-list").select2({
             tags: true
+        });
+        
+        /* wizard card6 section */
+        $("#upload").each(function() {
+            $(this).fileinput({
+                language : 'zh',
+                uploadUrl: '/fileinput',
+                overwriteInitial: true,
+                allowedFileExtensions : ['csv','xls','xlsx'],
+                maxFilesNum: 1,
+                maxFileSize: 1024,
+                showUpload: true,
+                showRemove: false,
+                showPreview: false,
+                uploadExtraData: function (previewId, index) {
+                    var info = {"_token": "{{ csrf_token() }}"};
+                    return info;
+                },
+                slugCallback: function(filename) {//before upload
+                    return filename.replace('(', '_').replace(']', '_');
+                }
+            }).on("fileuploaded", function(event, data){//success
+                $('#user-import').val(data.response.realname);
+            });
         });
 
         $(document).on("click", "#add-modal-submit", function (e) {

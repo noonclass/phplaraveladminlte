@@ -19,6 +19,9 @@
 <!-- Select2 -->
 <script src="{{ url ('/plugins/select2.full.min.js') }}" type="text/javascript"></script>
 <script src="{{ url ('/plugins/select2.zh-CN.js') }}" type="text/javascript"></script>
+<!-- fileinput -->
+<script src="{{ url ('/plugins/fileinput.min.js') }}" type="text/javascript"></script>
+<script src="{{ url ('/plugins/fileinput.zh.js') }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

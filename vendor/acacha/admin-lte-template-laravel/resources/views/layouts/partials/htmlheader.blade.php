@@ -10,6 +10,7 @@
     <link href="{{ asset('/plugins/dataTables.bootstrap.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/plugins/bootstrap-wizard.css') }}" rel="stylesheet" type="text/css"/>
     <link href="{{ asset('/plugins/select2.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('/plugins/fileinput.min.css') }}" rel="stylesheet" type="text/css"/>
     
     <link href="{{ asset('/css/all.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('/css/global.css') }}" rel="stylesheet" type="text/css"/>

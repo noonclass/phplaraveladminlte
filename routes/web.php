@@ -23,8 +23,9 @@ Route::group(['middleware' => 'auth'], function () {
     //Please do not remove this if you want adminlte:route and adminlte:link commands to works correctly.
     #adminlte_routes
     Route::get('home', function () {
-    return view('home');
-});
+        return view('home');
+    });
+    Route::post('fileinput', 'FileinputController@index');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
