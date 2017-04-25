@@ -33,7 +33,8 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('adminlte::auth.register');
+        // block register entry
+        return redirect()->guest('login');
     }
 
     /**
