@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
     Route::post('tenant/r', 'TenantController@read');
     Route::post('tenant/u', 'TenantController@update');
     Route::post('tenant/d', 'TenantController@delete');
+    Route::post('tenant/w', 'TenantController@wizard');
     
     // Extension Web Routes
     Route::get( 'extension',   ['as'=>'extension','uses'=>'ExtensionController@index']);

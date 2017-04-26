@@ -7,8 +7,15 @@
 .divider {
     border-top: 1px solid #4c5b61;
 }
-.file-input .btn{
+.file-input .input-group .btn{
     padding: 8px 12px;
+}
+.file-input .progress {
+    position: absolute;
+    top: 41px;
+}
+.file-input .progress .progress-bar {
+    padding: 0 5px;
 }
 /*
  * -------- sign 

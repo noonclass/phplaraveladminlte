@@ -109,14 +109,14 @@
     <div class="wizard" id="add-wizard" data-title="{{ trans('adminlte_lang::message.crudcolumns.createrecord') }}{{ trans('adminlte_lang::message.wizard') }}">
         <h1>{{ trans('adminlte_lang::message.crudcolumns.createrecord') }}{{ trans('adminlte_lang::message.wizard') }}</h1>
         <!-- normal wizard cards -->
-        <div class="wizard-card" data-cardname="card1">
+        <div class="wizard-card" data-cardname="card1" data-validate="validateCard1">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.cardbasic') }}</h3>
             <div class="container-fluid">
                 <div class="box box-solid">
                     <div class="box-body">
                         <div class="form-group">
                           <label for="name">{{ trans('adminlte_lang::message.tenantcolumns.name') }}</label>
-                          <input type="text" class="form-control" id="name" name="name" data-validate="validateName">
+                          <input type="text" class="form-control" id="name" name="name">
                         </div>
                         <div class="form-group">
                           <label for="desc">{{ trans('adminlte_lang::message.tenantcolumns.desc') }}</label>
@@ -145,7 +145,7 @@
               </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card2">
+        <div class="wizard-card" data-cardname="card2" data-validate="validateCard2">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.carddatetime') }}</h3>
             <div class="container-fluid">
                 <div class="box box-solid">
@@ -164,7 +164,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-calendar-check-o"></i>
                             </div>
-                            <select class="form-control" id="week-day" name="week_day" multiple="multiple" style="width: 100%;"></select>
+                            <select class="form-control" id="week-day" name="week_day[]" multiple="multiple" style="width: 100%;"></select>
                           </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-clock-o"></i>
                             </div>
-                            <select class="form-control" id="work-hour" name="work_hour" multiple="multiple" style="width: 100%;"></select>
+                            <select class="form-control" id="work-hour" name="work_hour[]" multiple="multiple" style="width: 100%;"></select>
                           </div>
                         </div>
                     </div>
@@ -198,7 +198,7 @@
                 
                 <div class="box box-solid">
                     <div class="box-header with-border">
-                      <h3 class="box-title">{{ trans('adminlte_lang::message.tenantcolumns.holidays') }}</h3>
+                      <h3 class="box-title">{{ trans('adminlte_lang::message.tenantcolumns.holiday') }}</h3>
                       <div class="box-tools">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                         </button>
@@ -207,12 +207,12 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <div class="form-group">
-                          <label for="holidays">{{ trans('adminlte_lang::message.tenantcolumns.holidayssub') }}</label>
+                          <label for="holiday">{{ trans('adminlte_lang::message.tenantcolumns.holidaysub') }}</label>
                           <div class="input-group">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar-times-o"></i>
                             </div>
-                            <input type="text" class="form-control" id="holidays" name="holidays">
+                            <input type="text" class="form-control" id="holiday" name="holiday">
                           </div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
             </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card3">
+        <div class="wizard-card" data-cardname="card3" data-validate="validateCard3">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.cardmusic') }}</h3>
             <div class="container-fluid">
                 <div class="box box-solid">
@@ -241,7 +241,8 @@
                             <div class="input-group-addon">
                               <i class="fa fa-file-audio-o"></i>
                             </div>
-                            <input type="text" class="form-control" id="welcome" name="welcome_file">
+                            <input type="hidden" id="welcome" name="welcome_file">
+                            <input type="file" class="form-control" id="upload-audio" name="upload">
                           </div>
                         </div>
                     </div>
@@ -265,7 +266,8 @@
                             <div class="input-group-addon">
                               <i class="fa fa-file-audio-o"></i>
                             </div>
-                            <input type="text" class="form-control" id="nonwork" name="nonwork_file">
+                            <input type="hidden" id="nonwork" name="nonwork_file">
+                            <input type="file" class="form-control" id="upload-audio" name="upload">
                           </div>
                         </div>
                     </div>
@@ -289,7 +291,8 @@
                             <div class="input-group-addon">
                               <i class="fa fa-file-audio-o"></i>
                             </div>
-                            <input type="text" class="form-control" id="moh" name="moh_file">
+                            <input type="hidden" id="moh" name="moh_file">
+                            <input type="file" class="form-control" id="upload-audio" name="upload">
                           </div>
                         </div>
                     </div>
@@ -299,7 +302,7 @@
             </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card4">
+        <div class="wizard-card" data-cardname="card4" data-validate="validateCard4">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.cardlimit') }}</h3>
             <div class="container-fluid">
                 <div class="box box-solid">
@@ -343,7 +346,7 @@
             </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card5">
+        <div class="wizard-card" data-cardname="card5" data-validate="validateCard5">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.cardextension') }}</h3>
             <div class="container-fluid">
                 <div class="callout callout-info">
@@ -358,7 +361,7 @@
                             <div class="input-group-addon">
                               <i class="fa fa-phone"></i>
                             </div>
-                            <input type="text" class="form-control" id="ext-count" name="ext_count" data-validate="validateNumber">
+                            <input type="text" class="form-control" id="ext-count" name="ext_count">
                           </div>
                         </div>
                         <div class="form-group">
@@ -367,7 +370,7 @@
                             <div class="input-group-addon">
                               <i class="glyphicon glyphicon-lock"></i>
                             </div>
-                            <input type="text" class="form-control" id="ext-password" name="ext_password">
+                            <input type="password" class="form-control" id="ext-password" name="ext_password">
                           </div>
                         </div>
                         <div class="form-group">
@@ -376,7 +379,7 @@
                             <div class="input-group-addon">
                               <i class="glyphicon glyphicon-log-in"></i>
                             </div>
-                            <input type="text" class="form-control" id="ext-retype-password" name="ext_retype_password">
+                            <input type="password" class="form-control" id="ext-retype-password" name="ext_retype_password">
                           </div>
                         </div>
                      </div>
@@ -386,7 +389,7 @@
             </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card6">
+        <div class="wizard-card" data-cardname="card6" data-validate="validateCard6">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.carduser') }}</h3>
             <div class="container-fluid">
                 <div class="callout callout-info">
@@ -396,10 +399,13 @@
                 <div class="box box-solid">
                     <div class="box-body">
                         <div class="form-group">
-                           <label for="user-import">{{ trans('adminlte_lang::message.tenantcolumns.import') }}</label>
-                           <div class="input-group">
-                            <input type="hidden" id="user-import" name="user_import">
-                            <input type="file" class="form-control" id="upload" name="upload">
+                          <label for="user-file">{{ trans('adminlte_lang::message.tenantcolumns.usersub') }}</label>
+                          <div class="input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-file-excel-o"></i>
+                            </div> 
+                            <input type="hidden" id="user-file" name="user_file">
+                            <input type="file" class="form-control" id="upload-file" name="upload" data-type="utpl">
                           </div>
                         </div>
                     </div>
@@ -409,7 +415,7 @@
             </div>
         </div>
         <!-- /.wizard-card -->
-        <div class="wizard-card" data-cardname="card7">
+        <div class="wizard-card" data-cardname="card7" data-validate="validateCard7">
             <h3>{{ trans('adminlte_lang::message.tenantcolumns.cardcharge') }}</h3>
             <div class="container-fluid">
                 <div class="box box-solid">
@@ -609,6 +615,7 @@
         $object['read_url']   = url('account/tenant/r');
         $object['update_url'] = url('account/tenant/u');
         $object['delete_url'] = url('account/tenant/d');
+        $object['wizard_url'] = url('account/tenant/w');
 
         $object_json = json_encode($object);
         return $object_json;
@@ -620,11 +627,12 @@
     var options = {
         contentHeight: 600,
         contentWidth: 834,// 28%(233px)+72%(600px)
-        buttons: {  cancelText: "取消",
-                    nextText: "下一页",
-                    backText: "上一页",
-                    submitText: "开通",
-                    submittingText: "提交中..."},
+        buttons:{ cancelText:"{{ trans('adminlte_lang::message.wizardbuttons.cancelText')}}",
+                  nextText:"{{ trans('adminlte_lang::message.wizardbuttons.nextText')}}",
+                  backText:"{{ trans('adminlte_lang::message.wizardbuttons.backText')}}",
+                  submitText:"{{ trans('adminlte_lang::message.wizardbuttons.submitText')}}",
+                  submittingText:"{{ trans('adminlte_lang::message.wizardbuttons.submittingText')}}"
+        },
     };
     var wizard = $("#add-wizard").wizard(options);
     
@@ -635,7 +643,7 @@
         });
         wizard.on("submit", function(wizard) {
             $.ajax({
-                url: ray.create_url,
+                url: ray.wizard_url,
                 type: "POST",
                 data: wizard.serialize() + "&_token={{ csrf_token() }}",
                 error: function(jqXHR, textStatus, errorThrown) {
@@ -647,10 +655,15 @@
                     wizard.hideButtons();
                     wizard.submitSuccess();
                     wizard.updateProgressBar(0);
+                    wizard.reset();
                     wizard.close();
                 }
             });
             return false;
+        });
+        
+        wizard.on("reset", function() {
+            // TODO:: Some reset actions
         });
         
         /* wizard card2 section */
@@ -666,7 +679,7 @@
         });
         workhour.val(["9", "10", "11", "14", "15", "16"]).trigger("change");
         
-        $('#holidays').datepicker({
+        $('#holiday').datepicker({
             autoclose: false,
             multidate: true,
             language: "zh-CN",
@@ -677,13 +690,40 @@
             //alert(ev.date.getFullYear().toString());
         }
         
+        /* wizard card3 section */
+        $("[id=upload-audio]").each(function() {
+            $(this).fileinput({
+                language : 'zh',
+                uploadUrl: '/fileinput',
+                overwriteInitial: true,
+                allowedFileTypes: ['audio', 'video'],
+                allowedFileExtensions : ['mp3','wav'],
+                maxFilesNum: 1,
+                maxFileSize: 10240,
+                showUpload: true,
+                showRemove: false,
+                showPreview: false,
+                initialCaption: "{{ trans('adminlte_lang::message.tenantcolumns.uploadaudio') }}",
+                uploadExtraData: function (previewId, index) {
+                    var info = {"_token": "{{ csrf_token() }}"};
+                    return info;
+                },
+                slugCallback: function(filename) {
+                    return filename.replace('(', '_').replace(']', '_');
+                }
+            }).on("fileuploaded", function(event, data){
+                $(this).parents('.file-input').prev().val(data.response.realname);
+            });
+        });
+        
         /* wizard card4 section */
         $("#limit-list").select2({
             tags: true
         });
         
+        /* wizard card5 section */
         /* wizard card6 section */
-        $("#upload").each(function() {
+        $("[id=upload-file]").each(function(index,element) {
             $(this).fileinput({
                 language : 'zh',
                 uploadUrl: '/fileinput',
@@ -694,18 +734,20 @@
                 showUpload: true,
                 showRemove: false,
                 showPreview: false,
+                initialCaption: "{{ trans('adminlte_lang::message.tenantcolumns.uploadfile') }}",
                 uploadExtraData: function (previewId, index) {
-                    var info = {"_token": "{{ csrf_token() }}"};
+                    var info = {"_token": "{{ csrf_token() }}", "_type": $(element).attr("data-type")};
                     return info;
                 },
-                slugCallback: function(filename) {//before upload
+                slugCallback: function(filename) {
                     return filename.replace('(', '_').replace(']', '_');
                 }
-            }).on("fileuploaded", function(event, data){//success
-                $('#user-import').val(data.response.realname);
+            }).on("fileuploaded", function(event, data){
+                $(this).parents('.file-input').prev().val(data.response.realname);
             });
         });
 
+        /* modal section */
         $(document).on("click", "#add-modal-submit", function (e) {
             $('#add-modal-form').submit();
         });
@@ -810,7 +852,11 @@
             }
         };
         
-        $("#add-modal #pkg, #edit-modal #pkg").change(function() {
+        /*
+        NOTE:: DOM树中ID跟身份证一样必须唯一
+        实际情况是，对于DOM树内有相同ID的，如果直接用$("#ID")来获取，在each的时候只会遍历到第1个元素；
+        如果想each这个ID集合，需要用$("[id=ID]")来进行选择，小写的id为固定写法，大写的ID为对象的id属性。*/
+        $("[id=pkg]").change(function() {
             if ($(this).is(":checked")) {
                 $(this).attr('value', 1);
                 $(this).closest("form").find('#pkg-amount').removeAttr('disabled');
@@ -845,7 +891,7 @@
           
           $("#edit-modal #pkg").prop({checked:false});
           if(Number(item.call_package) == 1){
-              //change .attr() to .prop() since JQuery 1.6 
+              //NOTE:: Change .attr() to .prop() since JQuery 1.6 
               $("#edit-modal #pkg").prop({checked:true});
               $('#edit-modal #pkg-amount').removeAttr('disabled');
               $('#edit-modal #pkg-minutes').removeAttr('disabled');
@@ -874,33 +920,111 @@
       }
     }
     
-    /* validate section */
-    function validateName(el) {
-        var name = el.val();
-        var retValue = {status: true};
-     
-        if (name == "") {
-            retValue.status = false;
-            //retValue.msg = "";
-        }
-     
-        return retValue;
+     /* validate cards */
+    function validateCard1(card) {return true;
+        var ret = true;
+        if(validateBlank(card, "#prefix"))ret = false;
+        if(validateBlank(card, "#gateway"))ret = false;
+        if(validateBlank(card, "#extrinsic-number"))ret = false;
+        if(validateBlank(card, "#access-number"))ret = false;
+        if(validateBlank(card, "#desc"))ret = false;
+        if(validateBlank(card, "#name"))ret = false;
+
+        return ret;
     }
     
-    function validateNumber(el) {
-        var number = el.val();
-        var retValue = {status: true};
+    function validateCard2(card) {return true;
+        var ret = true;
+        //if(validateBlank(card, "#holiday"))ret = false;
+        if(validateBlank(card, "#work-hour"))ret = false;
+        if(validateBlank(card, "#week-day"))ret = false;
+
+        return ret;
+    }
+    
+    function validateCard3(card) {return true;
+        var ret = true;
+        if(validateBlank(card, "#moh"))ret = false;
+        if(validateBlank(card, "#nonwork"))ret = false;
+        if(validateBlank(card, "#welcome"))ret = false;
+
+        return ret;
+    }
+    
+    function validateCard4(card) {return true;
+        var ret = true;
+        //if(validateBlank(card, "#limit-list"))ret = false;
+
+        return ret;
+    }
+    
+    function validateCard5(card) {return true;
+        var ret = true;
+        if(validateBlank(card, "#ext-retype-password"))ret = false;
+        if(validateBlank(card, "#ext-password"))ret = false;
+        if(validateBlank(card, "#ext-count"))ret = false;
         
-        if (number == "") {
-            retValue.status = false;
-            return retValue;
+        if(validateNumberIllegal(card, "#ext-count", 100))ret = false;
+        if(validatePasswordDifferent(card, "#ext-password", "#ext-retype-password"))ret = false;
+
+        return ret;
+    }
+    
+    function validateCard6(card) {return true;
+        var ret = true;
+        if(validateBlank(card, "#user-file"))ret = false;
+
+        return ret;
+    }
+    
+    function validateCard7(card) {return true;
+        var ret = true;
+        if(validateBlank(card, "#rate"))ret = false;
+
+        return ret;
+    }
+    
+    function validateBlank(card, input) {
+        var el = card.el.find(input);
+        var name = el.val();
+        if (name == "") {
+            el.focus();
+            el.parents("div.form-group").toggleClass("has-error", true);
+            return true;
         }
         
-        if (parseInt(number) <= 0 || parseInt(number) > 100) {
-            retValue.status = false;
+        el.parents("div.form-group").toggleClass("has-error", false);
+        return false;
+    }
+    
+    function validateNumberIllegal(card, input, max) {
+        var el = card.el.find(input);
+        var number = el.val();
+
+        if (number == "" || parseInt(number) <= 0 || parseInt(number) > max) {
+            el.focus();
+            el.parents("div.form-group").toggleClass("has-error", true);
+            return true;
         }
      
-        return retValue;
+        el.parents("div.form-group").toggleClass("has-error", false);
+        return false;
+    }
+    
+    function validatePasswordDifferent(card, input, retype) {
+        var el = card.el.find(input);
+        var el2 = card.el.find(retype);
+        var name = el.val();
+        var name2 = el2.val();
+        
+        if(name == "" || name2 == "" || name != name2){
+            el2.focus();
+            el2.parents("div.form-group").toggleClass("has-error", true);
+            return true;
+        }
+        
+        el2.parents("div.form-group").toggleClass("has-error", false);
+        return false;
     }
 </script>
 @endsection
