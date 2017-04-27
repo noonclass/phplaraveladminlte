@@ -352,6 +352,17 @@
                     options += '<option value='+item.id+'>'+item.name+' - '+item.desc+'</option>';
                 });
                 $('form #tenants').html(options);
+                
+                //租户管理员创建分机，分机号的有效性验证
+                if(typeof(result_obj.length) == "undefined"){
+                    var min = {{ Config::get('constants.extension.min') }}+{{ Config::get('constants.default.subsection') }}*Number(result_obj.id);
+                    var max = {{ Config::get('constants.extension.min') }}+{{ Config::get('constants.default.subsection') }}*(Number(result_obj.id)+1)-1;
+                    $('form #number').attr('placeholder', min + ' - ' +max);
+                }else{
+                    var min = {{ Config::get('constants.extension.min') }};
+                    var max = {{ Config::get('constants.extension.max') }};
+                    $('form #number').attr('placeholder', min + ' - ' +max);
+                }
             }
         });
     }

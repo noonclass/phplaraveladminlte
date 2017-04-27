@@ -6,6 +6,7 @@ use App\Extension;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class ExtensionController extends Controller
 {
@@ -40,10 +41,19 @@ class ExtensionController extends Controller
      */
     public function create(Request $request)
     {
+        //租户管理员创建分机，分机号的有效性验证
+        if (Auth::user()->hasRole('moderator')){
+            $tenantID = Auth::user()->tenant_id;
+            if($request->number < Config::get('constants.extension.min')+Config::get('constants.default.subsection')*$tenantID ||
+               $request->number > Config::get('constants.extension.min')+Config::get('constants.default.subsection')*($tenantID+1)-1){
+                return response()->json(['message' => trans('adminlte_lang::message.errormessages.extensionnumberinvalid')], 406);
+            }
+        }
+        
         try{
             $extension = new Extension;
             $extension->number       = $request->number;
-            $extension->password	 =  bcrypt($request->password);	
+            $extension->password	 = bcrypt($request->password);	
             $extension->alias_number = $request->alias_number;
             $extension->tenant_id    = $request->tenant_id;
             $extension->save();
@@ -94,6 +104,15 @@ class ExtensionController extends Controller
      */
     public function update(Request $request)
     {
+        //租户管理员创建分机，分机号的有效性验证
+        if (Auth::user()->hasRole('moderator')){
+            $tenantID = Auth::user()->tenant_id;
+            if($request->number < Config::get('constants.extension.min')+Config::get('constants.default.subsection')*$tenantID ||
+               $request->number > Config::get('constants.extension.min')+Config::get('constants.default.subsection')*($tenantID+1)-1){
+                return response()->json(['message' => trans('adminlte_lang::message.errormessages.extensionnumberinvalid')], 406);
+            }
+        }
+        
         $id = $request->id;
         $extension = Extension::find($id);
         $extension->number       = $request->number;
