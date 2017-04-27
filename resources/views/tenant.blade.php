@@ -764,7 +764,8 @@
                 beforeSend: addButterBar.createButterbar("{{ trans('adminlte_lang::message.crudcolumns.submitting') }}"),
                 error: function(jqXHR, textStatus, errorThrown) {
                     var t = addButterBar;
-                    t.createButterbar(jqXHR.status+': '+jqXHR.responseText);
+                    var responseText = $.parseJSON(jqXHR.responseText);
+                    t.createButterbar(jqXHR.status+': '+responseText.message);
                 },
                 success: function(result) {
                     var t = addButterBar;
@@ -806,7 +807,8 @@
                 beforeSend: addButterBar.createButterbar("{{ trans('adminlte_lang::message.crudcolumns.submitting') }}"),
                 error: function(jqXHR, textStatus, errorThrown) {
                     var t = addButterBar;
-                    t.createButterbar(jqXHR.status+': '+jqXHR.responseText);
+                    var responseText = $.parseJSON(jqXHR.responseText);
+                    t.createButterbar(jqXHR.status+': '+responseText.message);
                 },
                 success: function(result) {
                     var t = addButterBar;
