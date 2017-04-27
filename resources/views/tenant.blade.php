@@ -394,7 +394,7 @@
             <div class="container-fluid">
                 <div class="callout callout-info">
                     <h4>Tip!</h4>
-                    <p>{{ trans('adminlte_lang::message.tenantcolumns.cardusertips') }}</p>
+                    <p>{{ trans('adminlte_lang::message.tenantcolumns.cardusertips') }} <a href="{{ url('/templates/tpl_user.xlsx') }}">{{ trans('adminlte_lang::message.tenantcolumns.usertpl') }}</a></p>
                 </div>
                 <div class="box box-solid">
                     <div class="box-body">
@@ -713,6 +713,7 @@
                 }
             }).on("fileuploaded", function(event, data){
                 $(this).parents('.file-input').prev().val(data.response.realname);
+                $(this).parents("div.form-group").toggleClass("has-error", false);
             });
         });
         
@@ -744,6 +745,7 @@
                 }
             }).on("fileuploaded", function(event, data){
                 $(this).parents('.file-input').prev().val(data.response.realname);
+                $(this).parents("div.form-group").toggleClass("has-error", false);
             });
         });
 
@@ -921,7 +923,7 @@
     }
     
      /* validate cards */
-    function validateCard1(card) {return true;
+    function validateCard1(card) {
         var ret = true;
         if(validateBlank(card, "#prefix"))ret = false;
         if(validateBlank(card, "#gateway"))ret = false;
@@ -933,7 +935,7 @@
         return ret;
     }
     
-    function validateCard2(card) {return true;
+    function validateCard2(card) {
         var ret = true;
         //if(validateBlank(card, "#holiday"))ret = false;
         if(validateBlank(card, "#work-hour"))ret = false;
@@ -942,7 +944,7 @@
         return ret;
     }
     
-    function validateCard3(card) {return true;
+    function validateCard3(card) {
         var ret = true;
         if(validateBlank(card, "#moh"))ret = false;
         if(validateBlank(card, "#nonwork"))ret = false;
@@ -951,33 +953,33 @@
         return ret;
     }
     
-    function validateCard4(card) {return true;
+    function validateCard4(card) {
         var ret = true;
         //if(validateBlank(card, "#limit-list"))ret = false;
 
         return ret;
     }
     
-    function validateCard5(card) {return true;
+    function validateCard5(card) {
         var ret = true;
         if(validateBlank(card, "#ext-retype-password"))ret = false;
         if(validateBlank(card, "#ext-password"))ret = false;
         if(validateBlank(card, "#ext-count"))ret = false;
         
-        if(validateNumberIllegal(card, "#ext-count", 100))ret = false;
+        if(validateNumberIllegal(card, "#ext-count", {{ Config::get('constants.default.subsection') }}))ret = false;
         if(validatePasswordDifferent(card, "#ext-password", "#ext-retype-password"))ret = false;
 
         return ret;
     }
     
-    function validateCard6(card) {return true;
+    function validateCard6(card) {
         var ret = true;
         if(validateBlank(card, "#user-file"))ret = false;
 
         return ret;
     }
     
-    function validateCard7(card) {return true;
+    function validateCard7(card) {
         var ret = true;
         if(validateBlank(card, "#rate"))ret = false;
 

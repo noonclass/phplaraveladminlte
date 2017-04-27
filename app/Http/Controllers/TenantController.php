@@ -88,7 +88,7 @@ class TenantController extends Controller
         //分机Bat
         $count = $request->ext_count;
         while ($count>0){
-            $number = 10000 + 100*intval($tenant->id) + $count;
+            $number = Config::get('constants.extension.min') + Config::get('constants.default.subsection')*intval($tenant->id) + $count;
             DB::table('extensions')->insert(
                 array('number' => $number, 'password' => bcrypt($request->ext_password), 'alias_number' => $request->extrinsic_number, 'tenant_id' => $tenant->id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
             );
@@ -100,17 +100,22 @@ class TenantController extends Controller
         $uploads = realpath(public_path('uploads'));
         $target = $uploads. DIRECTORY_SEPARATOR . $request->user_file;
         
-        $reader = Excel::load($target);
-        $sheet = $reader->first();//getting the first sheet only
-        foreach($sheet as $row){
-            $extension = 
-            DB::table('extensions')->select('id')
-                    ->where('number', $row->extension)
-                    ->first();
-            DB::table('users')->insert(
-                array('name' => $row->name, 'fullname' => $row->fullname, 'email' => $row->email, 'password' => bcrypt($row->password), 'extension_id' => $extension->id,  'tenant_id' => $tenant->id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
-            );
-        }
+        Excel::load($target, function($reader) {
+            $reader->takeRows(Config::get('constants.default.subsection'));
+            $reader->takeColumns(Config::get('constants.tpl.user_column'));
+            $reader->each(function($sheet) {
+                $sheet->each(function($row) {
+                    if(empty($row->name))return;
+                    $extension = 
+                    DB::table('extensions')->select('id','tenant_id')
+                            ->where('number', $row->extension)
+                            ->first();
+                    DB::table('users')->insert(
+                        array('name' => $row->name, 'fullname' => $row->fullname, 'email' => $row->email, 'password' => bcrypt($row->password), 'extension_id' => $extension->id,  'tenant_id' => $extension->tenant_id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                    );
+                });
+            });
+        });
         
         $result = Tenant::all();
         return response()->json($result);
@@ -141,7 +146,7 @@ class TenantController extends Controller
             $tenant->status               = $request->status;
             $tenant->save();
         }catch(\Illuminate\Database\QueryException $e){
-            return response()->json(['message' => $e->getMessage()], 406);
+            return response()->json(['message' => $e->getMessage()], 406);// 406: Not Acceptable
         }
         
         $result = Tenant::all();
