@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Config;
 
 class FileinputController extends Controller
 {
+    /*
+     * Response of fileinput
+     */
     protected $success = null;
     protected $error = "";
     
@@ -40,7 +43,7 @@ class FileinputController extends Controller
         }
         
         if ($type == "utpl"){
-            //对于用户模板，做数据有效性检查，模板格式如下: name	fullname	email	password	extension */
+            //对于用户模板，做数据有效性检查，模板格式如下: name	fullname	email	password	role */
             Excel::load($target, function($reader) {
                 $reader->takeRows(Config::get('constants.default.subsection'));
                 $reader->takeColumns(Config::get('constants.tpl.user_column'));

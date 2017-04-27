@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use Excel;
+use App\User;
 use App\Tenant;
 use Illuminate\Http\Request;
+use Ultraware\Roles\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 
 class TenantController extends Controller
 {
+    /*
+     * Response of fileinput
+     */
+     protected $id = 0;
+    
     /*
      * Read and Display all records
      */
@@ -53,20 +61,22 @@ class TenantController extends Controller
             return response()->json(['message' => $e->getMessage()], 406);
         }
         
+        $this->id = $tenant->id;
+        
         //日期时间
         foreach($request->week_day as $value){
             DB::table('tenantmeta')->insert(
-                array('tenant_id' => $tenant->id, 'meta_key' => 'week_day', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                array('tenant_id' => $this->id, 'meta_key' => 'week_day', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
             );
         }
         foreach($request->work_hour as $value){
             DB::table('tenantmeta')->insert(
-                array('tenant_id' => $tenant->id, 'meta_key' => 'work_hour', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                array('tenant_id' => $this->id, 'meta_key' => 'work_hour', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
             );
         }
         foreach(explode(",", $request->holiday) as $value){
             DB::table('tenantmeta')->insert(
-                array('tenant_id' => $tenant->id, 'meta_key' => 'holiday', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                array('tenant_id' => $this->id, 'meta_key' => 'holiday', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
             );
         }
         
@@ -74,25 +84,24 @@ class TenantController extends Controller
         if($request->limit == 1){//Black
             foreach($request->limit_list as $value){
                 DB::table('tenantmeta')->insert(
-                    array('tenant_id' => $tenant->id, 'meta_key' => 'blacklist_number', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                    array('tenant_id' => $this->id, 'meta_key' => 'blacklist_number', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
                 );
             }
         }elseif($request->limit == -1){//white[-1]
             foreach($request->limit_list as $value){
                 DB::table('tenantmeta')->insert(
-                    array('tenant_id' => $tenant->id, 'meta_key' => 'whilelist_number', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                    array('tenant_id' => $this->id, 'meta_key' => 'whilelist_number', 'meta_value' => $value, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
                 );
             }
         }
         
         //分机Bat
         $count = $request->ext_count;
-        while ($count>0){
-            $number = Config::get('constants.extension.min') + Config::get('constants.default.subsection')*intval($tenant->id) + $count;
+        for ($i = 0; $i < $count; $i++) {
+            $number = Config::get('constants.extension.min') + Config::get('constants.default.subsection')*$this->id + $i;
             DB::table('extensions')->insert(
-                array('number' => $number, 'password' => bcrypt($request->ext_password), 'alias_number' => $request->extrinsic_number, 'tenant_id' => $tenant->id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
+                array('number' => $number, 'password' => bcrypt($request->ext_password), 'alias_number' => $request->extrinsic_number, 'tenant_id' => $this->id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
             );
-            $count--;
         }
         
         
@@ -104,15 +113,24 @@ class TenantController extends Controller
             $reader->takeRows(Config::get('constants.default.subsection'));
             $reader->takeColumns(Config::get('constants.tpl.user_column'));
             $reader->each(function($sheet) {
-                $sheet->each(function($row) {
+                $sheet->each(function($row, $index) {
                     if(empty($row->name))return;
-                    $extension = 
-                    DB::table('extensions')->select('id','tenant_id')
-                            ->where('number', $row->extension)
-                            ->first();
-                    DB::table('users')->insert(
-                        array('name' => $row->name, 'fullname' => $row->fullname, 'email' => $row->email, 'password' => bcrypt($row->password), 'extension_id' => $extension->id,  'tenant_id' => $extension->tenant_id, 'created_at' => \Carbon\Carbon::now(),  'updated_at' => \Carbon\Carbon::now())
-                    );
+                    $number = Config::get('constants.extension.min') + Config::get('constants.default.subsection')*$this->id + $index;
+                    $extension = DB::table('extensions')->select('id','tenant_id')
+                                    ->where('number', $number)
+                                    ->first();
+                    $user = new User;
+                    $user->name          = $row->name;
+                    $user->fullname	     = $row->fullname;	
+                    $user->email         = $row->email;
+                    $user->password      = bcrypt($row->password);
+                    $user->extension_id  = $extension->id;
+                    $user->tenant_id     = $extension->tenant_id;
+                    $user->save();
+                   
+                    //attaching roles
+                    $role = Role::where('description', $row->role)->first();
+                    $user->attachRole($role->id);
                 });
             });
         });

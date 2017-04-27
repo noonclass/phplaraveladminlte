@@ -19,6 +19,6 @@ return array(
     'tpl' => array(
     
         // the columns of template for user import
-		'user_column'   => 4,
+		'user_column'   => 5,
     )
 );
