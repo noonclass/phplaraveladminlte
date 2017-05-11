@@ -125,3 +125,13 @@ body.login-page {
     padding: 6px 8px;
     display: inline;
 }
+/*
+ * -------- particles
+ */
+#particles {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    background-color: transparent;
+}

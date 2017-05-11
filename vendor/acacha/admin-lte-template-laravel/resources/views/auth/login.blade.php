@@ -71,6 +71,15 @@
             });
         });
     </script>
+    
+    <!-- Cool Particles (canvas) -->
+    <div id="particles"></div>
+    <script src="{{ url ('/plugins/particles.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        particlesJS.load("particles", "{{ url ('/plugins/particles.json') }}", function() {
+            console.log("callback - particles.js config loaded");
+        });
+    </script>
 </body>
 
 @endsection
