@@ -323,11 +323,7 @@
                         tbody += '</tr>';
                     });
                     
-                    $("#datatable").dataTable().fnDestroy();
-                    $('#datatable tbody').empty();
-                    
-                    $('#datatable tbody').html(tbody);
-                    $("#datatable").dataTable();
+                    flushDataTable(tbody);
                     
                     $('#add-modal').modal('hide');
                 }
@@ -366,11 +362,7 @@
                         tbody += '</tr>';
                     });
                     
-                    $("#datatable").dataTable().fnDestroy();
-                    $('#datatable tbody').empty();
-                    
-                    $('#datatable tbody').html(tbody);
-                    $("#datatable").dataTable();
+                    flushDataTable(tbody);
                     
                     $('#edit-modal').modal('hide');
                 }

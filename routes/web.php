@@ -59,6 +59,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
     Route::post('role/u', 'RoleController@update');
     Route::post('role/d', 'RoleController@delete');
     
+    
     Route::get('permission', function ()    {
         $data = ['as'=>'permission'];
         return view('permission',$data);
@@ -66,27 +67,41 @@ Route::group(['middleware' => 'auth', 'prefix' => 'account'], function()
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'config'], function()
-{
-    Route::get('blacklist', function ()    {
-        $data = ['as'=>'blacklist'];
-        return view('blacklist',$data);
-    })->name('blacklist');
-    Route::get('whitelist', function ()    {
-        $data = ['as'=>'whitelist'];
-        return view('whitelist',$data);
-    })->name('whitelist');
+{ 
+     // Tenantmeta Web Routes
+    Route::get( 'blacklist',   ['as'=>'blacklist','uses'=>'BlacklistController@index']);
+    Route::post('blacklist/c', 'BlacklistController@create');
+    Route::post('blacklist/r', 'BlacklistController@read');
+    Route::post('blacklist/u', 'BlacklistController@update');
+    Route::post('blacklist/d', 'BlacklistController@delete');
+    Route::post('blacklist/ch', 'BlacklistController@change_select');
+    
+    
+        // Tenantmeta Web Routes
+    Route::get( 'whitelist',   ['as'=>'whitelist','uses'=>'WhitelistController@index']);
+    Route::post('whitelist/c', 'WhitelistController@create');
+    Route::post('whitelist/r', 'WhitelistController@read');
+    Route::post('whitelist/u', 'WhitelistController@update');
+    Route::post('whitelist/d', 'WhitelistController@delete');
+    Route::post('whitelist/ch', 'WhitelistController@change_select');
+    
+  
     Route::get('welcoming', function ()    {
         $data = ['as'=>'welcoming'];
         return view('welcoming',$data);
     })->name('welcoming');
-    Route::get('outside', function ()    {
-        $data = ['as'=>'outside'];
-        return view('outside',$data);
-    })->name('outside');
-    Route::get('schedhangup', function ()    {
-        $data = ['as'=>'schedhangup'];
-        return view('schedhangup',$data);
-    })->name('schedhangup');
+    
+    // Outside Web Routes
+    Route::get( 'outside',   ['as'=>'outside','uses'=>'OutsideController@index']);
+    Route::post('outside/c', 'OutsideController@create');
+    Route::post('outside/d', 'OutsideController@delete');
+    Route::post('outside/s', 'OutsideController@read_extision'); 
+    
+    // Schedhangup Web Routes
+    Route::get( 'schedhangup',   ['as'=>'schedhangup','uses'=>'SchedhangupController@index']);
+    Route::post('schedhangup/r', 'SchedhangupController@read');
+    Route::post('schedhangup/u', 'SchedhangupController@update');
+  
     Route::get('transfer', function ()    {
         $data = ['as'=>'transfer'];
         return view('transfer',$data);
@@ -103,6 +118,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'config'], function()
         $data = ['as'=>'onedial'];
         return view('onedial',$data);
     })->name('onedial');
+    
+     // Work_holiday Web Routes
+    Route::get( 'work_holiday',   ['as'=>'work_holiday','uses'=>'WorkHolidayController@index']);
+    Route::post('work_holiday/c', 'WorkHolidayController@create');
+    Route::post('work_holiday/r', 'WorkHolidayController@read');
+    Route::post('work_holiday/u', 'WorkHolidayController@update');
+    Route::post('work_holiday/d', 'WorkHolidayController@delete');
+    Route::post('work_holiday/ch', 'WorkHolidayController@change_select');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'stat'], function()

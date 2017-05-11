@@ -227,11 +227,7 @@
                     });
                     
                     //To completely delete and remove the datatable object with its DOM elements you need to :
-                    $("#datatable").dataTable().fnDestroy();
-                    $('#datatable tbody').empty();
-                    
-                    $('#datatable tbody').html(tbody);
-                    $("#datatable").dataTable();
+                    flushDataTable(tbody);
                     
                     $('#add-modal').modal('hide');
                 }
@@ -268,11 +264,7 @@
                     });
                     
                     //To completely delete and remove the datatable object with its DOM elements you need to :
-                    $("#datatable").dataTable().fnDestroy();
-                    $('#datatable tbody').empty();
-                    
-                    $('#datatable tbody').html(tbody);                    
-                    $("#datatable").dataTable();
+                   flushDataTable(tbody);
                     
                     $('#edit-modal').modal('hide');
                 }

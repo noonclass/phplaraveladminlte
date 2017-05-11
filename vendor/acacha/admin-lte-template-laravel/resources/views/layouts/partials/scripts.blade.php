@@ -45,4 +45,20 @@
         });
         //table.buttons().container().appendTo( '#datatable_wrapper .col-sm-6:eq(0)' );
     });
+    
+    function flushDataTable(tbody){
+        $("#datatable").dataTable().fnDestroy();
+        
+        $('#datatable tbody').empty();
+        $('#datatable tbody').html(tbody);
+        
+        var table = $("#datatable").DataTable({
+            lengthChange: false,
+            buttons: ['pageLength', 'colvis'],
+            language: {"url": "{{ url ('/plugins/jquery.dataTables.zh-CN.json') }}"},
+            initComplete: function(settings, json) {
+                table.buttons().container().appendTo( '#datatable_wrapper .col-sm-6:eq(0)' );
+            }
+        });
+    }
 </script>

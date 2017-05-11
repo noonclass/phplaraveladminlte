@@ -34,7 +34,7 @@
             <li class="header">{{ trans('adminlte_lang::message.header') }}</li>
             <!-- Optionally, you can add icons to the links -->
             <li {{ (Route::is('') ? 'class=active' : '') }}><a href="{{ url('home') }}"><i class='fa fa-tachometer'></i> <span>{{ trans('adminlte_lang::message.home') }}</span></a></li>
-            <li class="treeview{{ (in_array(Route::currentRouteName(), array('blacklist','whitelist','welcoming','outside','schedhangup','transfer','holdmusic','2mobile','onedial'))?' active':'') }}">
+            <li class="treeview{{ (in_array(Route::currentRouteName(), array('blacklist','whitelist','welcoming','outside','schedhangup','transfer','holdmusic','2mobile','onedial','work_holiday'))?' active':'') }}">
                 <a href="#"><i class='fa fa-wrench'></i> <span>{{ trans('adminlte_lang::message.config') }}</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li {{ (Route::is('blacklist') ? 'class="active"' : '') }}><a href="{{ url('config/blacklist') }}">{{ trans('adminlte_lang::message.blacklist') }}</a></li>
@@ -46,6 +46,7 @@
                     <li {{ (Route::is('holdmusic') ? 'class="active"' : '') }}><a href="{{ url('config/holdmusic') }}">{{ trans('adminlte_lang::message.holdmusic') }}</a></li>
                     <li {{ (Route::is('2mobile') ? 'class="active"' : '') }}><a href="{{ url('config/2mobile') }}">{{ trans('adminlte_lang::message.2mobile') }}</a></li>
                     <li {{ (Route::is('onedial') ? 'class="active"' : '') }}><a href="{{ url('config/onedial') }}">{{ trans('adminlte_lang::message.onedial') }}</a></li>
+					<li {{ (Route::is('work_holiday') ? 'class="active"' : '') }}><a href="{{ url('config/work_holiday') }}">{{ trans('adminlte_lang::message.work_holiday') }}</a></li>
                 </ul>
             </li>
             <li class="treeview">
